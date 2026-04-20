@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canada's Food Guide - Reimagined</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+ :root {
+ --red: #D62B2B;
+ --red-light: #F5E8E8;
+ --maple: #C8511A;
+ --green: #2D6A4F;
+ --green-light: #D8F3DC;
+ --yellow: #F4C430;
+ --cream: #FBF7F0;
+ --dark: #1A1A1A;
+ --mid: #4A4A4A;
+ --soft: #8A8A8A;
+ --white: #FFFFFF;
+ --border: #E8E0D5;
+ --shadow: rgba(0,0,0,0.08);
+ }
+
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+ html { scroll-behavior: smooth; }
+
+ body {
+ font-family: 'DM Sans', sans-serif;
+ background: var(--cream);
+ color: var(--dark);
+ overflow-x: hidden;
+ }
+
+ /* NAV */
+ nav {
+ position: sticky; top: 0; z-index: 100;
+ background: var(--white);
+ border-bottom: 2px solid var(--dark);
+ display: flex; align-items: center; justify-content: space-between;
+ padding: 0 2rem; height: 64px;
+ }
+ .nav-logo {
+ font-family: 'Playfair Display', serif;
+ font-weight: 900; font-size: 1.1rem;
+ color: var(--dark); text-decoration: none;
+ display: flex; align-items: center; gap: 8px;
+ }
+ .nav-logo .maple-icon { color: var(--red); font-size: 1.3rem; }
+ .nav-links { display: flex; gap: 2rem; list-style: none; }
+ .nav-links a {
+ text-decoration: none; color: var(--mid);
+ font-size: 0.875rem; font-weight: 500;
+ transition: color 0.2s;
+ }
+ .nav-links a:hover { color: var(--red); }
+ .nav-cta {
+ background: var(--red); color: white;
+ border: none; padding: 0.5rem 1.25rem;
+ font-family: 'DM Sans', sans-serif;
+ font-weight: 600; font-size: 0.875rem;
+ border-radius: 2rem; cursor: pointer;
+ transition: background 0.2s;
+ }
+ .nav-cta:hover { background: #B52020; }
+
+ /* HERO */
+ .hero {
+ background: var(--dark);
+ min-height: 88vh;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ overflow: hidden;
+ position: relative;
+ }
+ .hero-text {
+ padding: 5rem 3rem 5rem 4rem;
+ display: flex; flex-direction: column; justify-content: center;
+ position: relative; z-index: 2;
+ }
+ .hero-eyebrow {
+ display: inline-flex; align-items: center; gap: 8px;
+ background: var(--red); color: white;
+ font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+ text-transform: uppercase; padding: 0.35rem 0.8rem;
+ border-radius: 2px; width: fit-content; margin-bottom: 1.5rem;
+ }
+ .hero h1 {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(2.8rem, 5vw, 4.2rem);
+ font-weight: 900; line-height: 1.1;
+ color: var(--white); margin-bottom: 1.5rem;
+ }
+ .hero h1 em { font-style: italic; color: var(--yellow); }
+ .hero-desc {
+ font-size: 1.1rem; line-height: 1.7;
+ color: rgba(255,255,255,0.7);
+ max-width: 480px; margin-bottom: 2.5rem;
+ }
+ .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+ .btn-primary {
+ background: var(--red); color: white;
+ padding: 0.875rem 2rem; border-radius: 3px;
+ font-family: 'DM Sans', sans-serif;
+ font-weight: 600; font-size: 0.95rem;
+ border: 2px solid var(--red);
+ cursor: pointer; transition: all 0.2s;
+ text-decoration: none; display: inline-block;
+ }
+ .btn-primary:hover { background: transparent; color: var(--red); }
+ .btn-secondary {
+ background: transparent; color: white;
+ padding: 0.875rem 2rem; border-radius: 3px;
+ font-family: 'DM Sans', sans-serif;
+ font-weight: 600; font-size: 0.95rem;
+ border: 2px solid rgba(255,255,255,0.4);
+ cursor: pointer; transition: all 0.2s;
+ text-decoration: none; display: inline-block;
+ }
+ .btn-secondary:hover { border-color: white; }
+ .hero-visual {
+ position: relative; overflow: hidden;
+ background: linear-gradient(135deg, #1e3a2f 0%, #2D6A4F 50%, #1a4a35 100%);
+ }
+ .hero-plate {
+ position: absolute; inset: 0;
+ display: flex; align-items: center; justify-content: center;
+ }
+ .plate-circle {
+ width: min(420px, 85%);
+ aspect-ratio: 1;
+ border-radius: 50%;
+ background: var(--white);
+ box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+ position: relative; overflow: hidden;
+ }
+ .plate-half {
+ position: absolute; height: 100%; width: 50%;
+ display: flex; flex-direction: column;
+ align-items: center; justify-content: center;
+ gap: 8px; padding: 1.5rem;
+ }
+ .plate-half.left { left: 0; background: var(--green-light); border-right: 3px solid var(--white); }
+ .plate-half.right { right: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 0; }
+ .plate-quarter {
+ width: 100%; height: 100%;
+ display: flex; flex-direction: column;
+ align-items: center; justify-content: center; padding: 1rem;
+ }
+ .plate-quarter.top { background: #FFF3E0; border-bottom: 3px solid var(--white); }
+ .plate-quarter.bottom { background: #E8F5E9; }
+ .plate-icon { font-size: 2rem; margin-bottom: 4px; }
+ .plate-label {
+ font-family: 'DM Sans', sans-serif;
+ font-size: 0.65rem; font-weight: 700;
+ text-transform: uppercase; letter-spacing: 0.06em;
+ text-align: center; color: var(--mid);
+ }
+ .plate-pct {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.8rem; font-weight: 900;
+ color: var(--dark); line-height: 1;
+ }
+ .plate-line {
+ position: absolute; top: 0; left: 50%;
+ width: 3px; height: 100%; background: white; z-index: 1;
+ transform: translateX(-50%);
+ }
+ .hero-stats {
+ position: absolute; bottom: 2rem; left: 50%;
+ transform: translateX(-50%);
+ display: flex; gap: 1.5rem;
+ }
+ .stat-pill {
+ background: rgba(255,255,255,0.15);
+ backdrop-filter: blur(10px);
+ border: 1px solid rgba(255,255,255,0.2);
+ padding: 0.6rem 1rem; border-radius: 2rem;
+ color: white; font-size: 0.8rem; font-weight: 500;
+ white-space: nowrap;
+ }
+ .stat-pill strong { color: var(--yellow); }
+
+ /* IMPROVEMENTS BANNER */
+ .improvements-banner {
+ background: var(--red); color: white;
+ padding: 1rem 4rem;
+ display: flex; align-items: center; gap: 2rem;
+ overflow-x: auto;
+ }
+ .imp-label {
+ font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+ text-transform: uppercase; white-space: nowrap;
+ opacity: 0.8;
+ }
+ .imp-items {
+ display: flex; gap: 1.5rem; align-items: center;
+ }
+ .imp-item {
+ display: flex; align-items: center; gap: 0.5rem;
+ font-size: 0.82rem; font-weight: 500; white-space: nowrap;
+ }
+ .imp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+
+ /* SECTIONS */
+ section { padding: 5rem 4rem; }
+ .section-label {
+ font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+ text-transform: uppercase; color: var(--red);
+ margin-bottom: 0.75rem;
+ }
+ .section-title {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(1.8rem, 3vw, 2.6rem);
+ font-weight: 700; line-height: 1.2;
+ color: var(--dark); margin-bottom: 1rem;
+ }
+ .section-desc {
+ font-size: 1rem; line-height: 1.7;
+ color: var(--mid); max-width: 600px; margin-bottom: 3rem;
+ }
+
+ /* PLATE BUILDER */
+ #builder { background: var(--white); border-top: 2px solid var(--dark); border-bottom: 2px solid var(--dark); }
+ .builder-grid {
+ display: grid; grid-template-columns: 1fr 1fr;
+ gap: 4rem; align-items: start;
+ }
+ .food-categories { display: flex; flex-direction: column; gap: 1rem; }
+ .category-card {
+ border: 2px solid var(--border);
+ border-radius: 8px; overflow: hidden;
+ transition: border-color 0.2s;
+ cursor: pointer;
+ }
+ .category-card:hover { border-color: var(--green); }
+ .category-card.active { border-color: var(--green); background: var(--green-light); }
+ .category-header {
+ display: flex; align-items: center; gap: 1rem;
+ padding: 1rem 1.25rem;
+ }
+ .cat-icon { font-size: 1.5rem; width: 2.5rem; text-align: center; }
+ .cat-info { flex: 1; }
+ .cat-name { font-weight: 600; font-size: 0.95rem; }
+ .cat-desc { font-size: 0.8rem; color: var(--soft); margin-top: 2px; }
+ .cat-amount {
+ display: flex; align-items: center; gap: 0.5rem;
+ }
+ .cat-btn {
+ width: 28px; height: 28px; border-radius: 50%;
+ border: 2px solid var(--border); background: white;
+ font-size: 1rem; cursor: pointer; font-weight: 700;
+ display: flex; align-items: center; justify-content: center;
+ transition: all 0.15s; color: var(--dark);
+ line-height: 1;
+ }
+ .cat-btn:hover { border-color: var(--green); color: var(--green); }
+ .cat-count {
+ font-weight: 700; font-size: 1rem; min-width: 24px; text-align: center;
+ }
+ .plate-visual-wrapper { position: sticky; top: 80px; }
+ .plate-builder-title {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.2rem; font-weight: 700;
+ margin-bottom: 1.5rem; color: var(--dark);
+ }
+ .plate-display {
+ width: 300px; height: 300px; border-radius: 50%;
+ border: 4px solid var(--dark);
+ position: relative; overflow: hidden;
+ margin: 0 auto 1.5rem;
+ background: #f8f5f0;
+ transition: all 0.3s ease;
+ }
+ .plate-segment {
+ position: absolute; inset: 0;
+ transition: all 0.4s ease;
+ }
+ .seg-veggies { background: #4CAF50; opacity: 0; transition: opacity 0.4s; }
+ .seg-protein { background: #FF7043; opacity: 0; transition: opacity 0.4s; }
+ .seg-grains { background: #FDD835; opacity: 0; transition: opacity 0.4s; }
+ .seg-water { background: #42A5F5; opacity: 0; transition: opacity 0.4s; }
+ .plate-center {
+ position: absolute; inset: 0;
+ display: flex; align-items: center; justify-content: center;
+ pointer-events: none;
+ }
+ .plate-score {
+ text-align: center;
+ background: white; border-radius: 50%;
+ width: 110px; height: 110px;
+ display: flex; flex-direction: column;
+ align-items: center; justify-content: center;
+ border: 3px solid var(--dark);
+ box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+ }
+ .score-num {
+ font-family: 'Playfair Display', serif;
+ font-size: 2rem; font-weight: 900; line-height: 1;
+ color: var(--dark);
+ }
+ .score-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; color: var(--soft); text-transform: uppercase; }
+ .plate-feedback {
+ background: var(--cream); border: 2px solid var(--border);
+ border-radius: 8px; padding: 1.25rem;
+ font-size: 0.875rem; line-height: 1.6; color: var(--mid);
+ min-height: 80px;
+ }
+ .plate-feedback strong { color: var(--dark); }
+ .plate-legend {
+ display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;
+ }
+ .legend-item {
+ display: flex; align-items: center; gap: 0.4rem;
+ font-size: 0.78rem; color: var(--mid);
+ }
+ .legend-dot {
+ width: 12px; height: 12px; border-radius: 3px;
+ flex-shrink: 0;
+ }
+
+ /* QUIZ */
+ #quiz { background: var(--dark); color: white; }
+ #quiz .section-title { color: white; }
+ #quiz .section-desc { color: rgba(255,255,255,0.65); }
+ .quiz-card {
+ background: #2a2a2a;
+ border: 1px solid #3a3a3a;
+ border-radius: 12px; padding: 2.5rem;
+ max-width: 720px;
+ }
+ .quiz-progress-bar {
+ height: 4px; background: #3a3a3a;
+ border-radius: 2px; margin-bottom: 2rem; overflow: hidden;
+ }
+ .quiz-progress-fill {
+ height: 100%; background: var(--red);
+ border-radius: 2px; transition: width 0.3s ease;
+ width: 0%;
+ }
+ .quiz-q-num {
+ font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+ text-transform: uppercase; color: var(--red); margin-bottom: 1rem;
+ }
+ .quiz-question {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.4rem; font-weight: 700;
+ line-height: 1.4; color: white; margin-bottom: 2rem;
+ }
+ .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; }
+ .quiz-option {
+ background: #333; border: 2px solid #444;
+ border-radius: 8px; padding: 1rem 1.25rem;
+ color: rgba(255,255,255,0.85); font-size: 0.9rem;
+ cursor: pointer; transition: all 0.15s; text-align: left;
+ font-family: 'DM Sans', sans-serif;
+ }
+ .quiz-option:hover:not(.selected):not(.correct):not(.wrong) {
+ border-color: var(--red); color: white;
+ }
+ .quiz-option.correct { border-color: #4CAF50; background: rgba(76,175,80,0.15); color: #81C784; }
+ .quiz-option.wrong { border-color: #ef5350; background: rgba(239,83,80,0.15); color: #ef9a9a; }
+ .quiz-option.selected { border-color: var(--yellow); background: rgba(244,196,48,0.1); }
+ .quiz-feedback {
+ margin-top: 1.5rem; padding: 1rem 1.25rem;
+ border-radius: 8px; font-size: 0.875rem; line-height: 1.6;
+ display: none;
+ }
+ .quiz-feedback.show { display: block; }
+ .quiz-feedback.correct-fb { background: rgba(76,175,80,0.15); border: 1px solid #4CAF50; color: #81C784; }
+ .quiz-feedback.wrong-fb { background: rgba(239,83,80,0.12); border: 1px solid #ef5350; color: #ef9a9a; }
+ .quiz-next {
+ margin-top: 1.5rem; padding: 0.875rem 2rem;
+ background: var(--red); color: white; border: none;
+ border-radius: 6px; font-family: 'DM Sans', sans-serif;
+ font-weight: 600; font-size: 0.9rem; cursor: pointer;
+ display: none; transition: background 0.2s;
+ }
+ .quiz-next:hover { background: #B52020; }
+ .quiz-next.show { display: inline-block; }
+ .quiz-result {
+ text-align: center; padding: 2rem 0;
+ display: none;
+ }
+ .quiz-result.show { display: block; }
+ .result-score {
+ font-family: 'Playfair Display', serif;
+ font-size: 4rem; font-weight: 900; color: var(--yellow);
+ line-height: 1;
+ }
+ .result-msg {
+ font-size: 1.1rem; color: rgba(255,255,255,0.8);
+ margin: 1rem 0 2rem;
+ }
+ .quiz-restart {
+ background: transparent; color: var(--red);
+ border: 2px solid var(--red); padding: 0.75rem 1.75rem;
+ border-radius: 6px; font-family: 'DM Sans', sans-serif;
+ font-weight: 600; cursor: pointer; transition: all 0.2s;
+ }
+ .quiz-restart:hover { background: var(--red); color: white; }
+
+ /* TIPS SECTION */
+ #tips { background: var(--cream); }
+ .tips-grid {
+ display: grid; grid-template-columns: repeat(3, 1fr);
+ gap: 1.5rem; margin-top: 1rem;
+ }
+ .tip-card {
+ background: var(--white); border: 2px solid var(--border);
+ border-radius: 10px; padding: 1.75rem;
+ transition: all 0.2s; cursor: pointer; position: relative; overflow: hidden;
+ }
+ .tip-card::before {
+ content: ''; position: absolute; inset: 0;
+ background: var(--green); opacity: 0;
+ transition: opacity 0.2s;
+ }
+ .tip-card:hover::before { opacity: 0.03; }
+ .tip-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 12px 30px var(--shadow); }
+ .tip-card .tip-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+ .tip-card h3 {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.1rem; font-weight: 700;
+ margin-bottom: 0.5rem; color: var(--dark);
+ position: relative;
+ }
+ .tip-card p { font-size: 0.875rem; line-height: 1.65; color: var(--mid); position: relative; }
+ .tip-expand {
+ margin-top: 0.75rem; font-size: 0.8rem; font-weight: 600;
+ color: var(--green); cursor: pointer; display: flex; align-items: center; gap: 4px;
+ position: relative;
+ }
+ .tip-detail {
+ display: none; margin-top: 0.75rem;
+ font-size: 0.825rem; line-height: 1.6; color: var(--mid);
+ border-top: 1px solid var(--border); padding-top: 0.75rem;
+ position: relative;
+ }
+ .tip-detail.open { display: block; }
+
+ /* LABEL DECODER */
+ #decoder { background: var(--white); border-top: 2px solid var(--dark); border-bottom: 2px solid var(--dark); }
+ .decoder-layout { display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: start; }
+ .fake-label {
+ background: white;
+ border: 2px solid var(--dark);
+ border-radius: 4px; padding: 1.5rem;
+ width: 260px; font-size: 0.8rem;
+ position: sticky; top: 80px;
+ box-shadow: 8px 8px 0 var(--dark);
+ }
+ .label-title {
+ font-size: 1.6rem; font-weight: 900; border-bottom: 8px solid var(--dark);
+ padding-bottom: 4px; margin-bottom: 8px;
+ }
+ .label-serving { font-size: 0.7rem; border-bottom: 1px solid #999; padding-bottom: 6px; margin-bottom: 4px; }
+ .label-calories { font-size: 2rem; font-weight: 900; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 4px solid var(--dark); padding-bottom: 4px; margin-bottom: 4px; }
+ .label-row {
+ display: flex; justify-content: space-between;
+ padding: 3px 0; font-size: 0.72rem;
+ border-bottom: 0.5px solid #ccc; cursor: pointer;
+ transition: background 0.15s;
+ border-radius: 3px; padding-left: 2px; padding-right: 2px;
+ }
+ .label-row:hover { background: #fff3cd; }
+ .label-row.highlighted { background: #fff3cd; font-weight: 700; }
+ .label-row.subrow { padding-left: 1.5rem; }
+ .label-footer {
+ font-size: 0.62rem; color: #555; border-top: 1px solid #999;
+ padding-top: 6px; margin-top: 4px; line-height: 1.4;
+ }
+ .decoder-explainers { display: flex; flex-direction: column; gap: 1rem; }
+ .explainer-card {
+ border: 2px solid var(--border); border-radius: 8px;
+ padding: 1.25rem 1.5rem; cursor: pointer;
+ transition: all 0.15s;
+ }
+ .explainer-card:hover { border-color: var(--maple); }
+ .explainer-card.active { border-color: var(--maple); background: #fff8f5; }
+ .explainer-header {
+ display: flex; align-items: center; gap: 1rem;
+ }
+ .explainer-icon { font-size: 1.4rem; }
+ .explainer-title { font-weight: 700; font-size: 0.95rem; flex: 1; }
+ .explainer-badge {
+ font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem;
+ border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em;
+ }
+ .badge-good { background: var(--green-light); color: var(--green); }
+ .badge-watch { background: #fff3e0; color: var(--maple); }
+ .badge-limit { background: var(--red-light); color: var(--red); }
+ .explainer-body {
+ display: none; margin-top: 0.75rem; padding-top: 0.75rem;
+ border-top: 1px solid var(--border);
+ font-size: 0.875rem; line-height: 1.65; color: var(--mid);
+ }
+ .explainer-body.open { display: block; }
+
+ /* MEAL TIMING */
+ #timing { background: var(--green); color: white; }
+ #timing .section-title { color: white; }
+ #timing .section-desc { color: rgba(255,255,255,0.75); }
+ .timeline {
+ display: flex; gap: 0; position: relative;
+ overflow-x: auto; padding-bottom: 1rem;
+ }
+ .timeline::before {
+ content: ''; position: absolute;
+ top: 40px; left: 0; right: 0; height: 2px;
+ background: rgba(255,255,255,0.3);
+ }
+ .timeline-stop {
+ flex: 1; min-width: 150px;
+ display: flex; flex-direction: column; align-items: center;
+ padding: 0 1rem; text-align: center; cursor: pointer;
+ }
+ .timeline-dot {
+ width: 20px; height: 20px; border-radius: 50%;
+ background: rgba(255,255,255,0.3); border: 3px solid white;
+ position: relative; z-index: 1; margin-bottom: 1rem;
+ transition: all 0.2s; margin-top: 30px;
+ }
+ .timeline-stop.active .timeline-dot,
+ .timeline-stop:hover .timeline-dot {
+ background: var(--yellow); border-color: var(--yellow);
+ transform: scale(1.3);
+ }
+ .timeline-time { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; color: var(--yellow); margin-bottom: 0.25rem; }
+ .timeline-meal { font-weight: 600; font-size: 0.9rem; color: white; margin-bottom: 0.25rem; }
+ .timeline-note { font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
+ .meal-detail {
+ background: rgba(0,0,0,0.2); border-radius: 10px;
+ padding: 1.5rem 2rem; margin-top: 2.5rem;
+ display: none;
+ }
+ .meal-detail.active { display: block; }
+ .meal-detail h3 {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.3rem; color: white; margin-bottom: 0.75rem;
+ }
+ .meal-detail-grid {
+ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+ }
+ .meal-item {
+ background: rgba(255,255,255,0.1); border-radius: 8px;
+ padding: 0.875rem; font-size: 0.85rem; color: rgba(255,255,255,0.9);
+ }
+ .meal-item-icon { font-size: 1.2rem; margin-bottom: 4px; }
+
+ /* FOOTER */
+ footer {
+ background: var(--dark); color: rgba(255,255,255,0.6);
+ padding: 3rem 4rem;
+ display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+ gap: 3rem; border-top: 2px solid #333;
+ }
+ footer h4 {
+ font-family: 'Playfair Display', serif;
+ color: white; font-size: 0.95rem; margin-bottom: 1rem;
+ }
+ footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+ footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.15s; }
+ footer a:hover { color: white; }
+ .footer-brand {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.2rem; font-weight: 900; color: white;
+ margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px;
+ }
+ .footer-note { font-size: 0.8rem; line-height: 1.6; }
+ .footer-disclaimer {
+ background: #111; padding: 1.25rem 4rem;
+ font-size: 0.75rem; color: rgba(255,255,255,0.35);
+ border-top: 1px solid #222;
+ display: flex; justify-content: space-between; align-items: center;
+ }
+
+ /* IMPROVEMENT CALLOUT */
+ .improvement-note {
+ position: absolute; top: 8px; right: 8px;
+ background: var(--yellow); color: var(--dark);
+ font-size: 0.65rem; font-weight: 700;
+ text-transform: uppercase; letter-spacing: 0.05em;
+ padding: 2px 6px; border-radius: 3px;
+ }
+
+ /* SITE PROGRESS TRACKER */
+ .site-progress {
+ position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+ background: var(--white); border-bottom: 1px solid var(--border);
+ padding: 0.5rem 2rem; display: flex; align-items: center; gap: 1rem;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+ transition: transform 0.3s ease;
+ }
+ .site-progress.hidden { transform: translateY(-100%); }
+ .progress-label {
+ font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+ text-transform: uppercase; color: var(--soft); white-space: nowrap;
+ }
+ .progress-stops {
+ display: flex; gap: 0.4rem; flex: 1; align-items: center;
+ }
+ .progress-stop {
+ display: flex; align-items: center; gap: 0.3rem;
+ font-size: 0.72rem; color: var(--soft); cursor: pointer;
+ padding: 0.2rem 0.5rem; border-radius: 2rem;
+ transition: all 0.2s; border: 1.5px solid transparent;
+ white-space: nowrap; text-decoration: none;
+ }
+ .progress-stop:hover { color: var(--green); border-color: var(--green-light); }
+ .progress-stop.visited {
+ color: var(--green); background: var(--green-light);
+ border-color: var(--green);
+ }
+ .progress-stop .stop-check {
+ width: 14px; height: 14px; border-radius: 50%;
+ border: 2px solid var(--border); background: white;
+ display: flex; align-items: center; justify-content: center;
+ font-size: 0.55rem; transition: all 0.2s; flex-shrink: 0;
+ }
+ .progress-stop.visited .stop-check {
+ background: var(--green); border-color: var(--green); color: white;
+ }
+ .progress-pct {
+ font-size: 0.7rem; font-weight: 700; color: var(--green);
+ white-space: nowrap;
+ }
+
+ /* ONBOARDING OVERLAY */
+ .onboarding-overlay {
+ position: fixed; inset: 0; z-index: 1000;
+ background: rgba(0,0,0,0.7);
+ display: flex; align-items: center; justify-content: center;
+ padding: 1.5rem;
+ animation: fadeIn 0.3s ease;
+ }
+ .onboarding-overlay.hidden { display: none; }
+ @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+ .onboarding-card {
+ background: var(--white); border-radius: 16px;
+ padding: 2.5rem; max-width: 540px; width: 100%;
+ box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+ animation: slideUp 0.35s ease;
+ }
+ @keyframes slideUp {
+ from { opacity: 0; transform: translateY(30px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+ .onboarding-logo {
+ font-size: 2rem; margin-bottom: 1rem;
+ }
+ .onboarding-title {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.6rem; font-weight: 900;
+ color: var(--dark); margin-bottom: 0.5rem;
+ }
+ .onboarding-sub {
+ font-size: 0.95rem; color: var(--mid); line-height: 1.6;
+ margin-bottom: 1.75rem;
+ }
+ .onboarding-q {
+ font-size: 0.875rem; font-weight: 700;
+ color: var(--dark); margin-bottom: 0.875rem;
+ text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem;
+ color: var(--soft);
+ }
+ .onboarding-options {
+ display: flex; flex-direction: column; gap: 0.6rem;
+ margin-bottom: 1.5rem;
+ }
+ .onboarding-option {
+ background: var(--cream); border: 2px solid var(--border);
+ border-radius: 8px; padding: 0.875rem 1.125rem;
+ display: flex; align-items: center; gap: 0.875rem;
+ cursor: pointer; transition: all 0.15s;
+ font-family: 'DM Sans', sans-serif; text-align: left;
+ }
+ .onboarding-option:hover {
+ border-color: var(--green); background: var(--green-light);
+ }
+ .onboarding-option .opt-icon { font-size: 1.3rem; flex-shrink: 0; }
+ .onboarding-option .opt-text { }
+ .onboarding-option .opt-title {
+ font-weight: 700; font-size: 0.9rem; color: var(--dark);
+ }
+ .onboarding-option .opt-sub {
+ font-size: 0.78rem; color: var(--soft); margin-top: 1px;
+ }
+ .onboarding-skip {
+ text-align: center; font-size: 0.8rem; color: var(--soft);
+ cursor: pointer; text-decoration: underline;
+ }
+ .onboarding-skip:hover { color: var(--mid); }
+
+ /* SCORE COLOUR */
+ .score-num.score-poor { color: var(--red); }
+ .score-num.score-mid { color: var(--maple); }
+ .score-num.score-good { color: var(--green); }
+ .plate-score-ring {
+ position: absolute; inset: 0; border-radius: 50%;
+ pointer-events: none; z-index: 2;
+ transition: box-shadow 0.4s ease;
+ }
+
+ /* PLATE BUILDER HINT */
+ .builder-hint {
+ background: var(--green-light); border: 1.5px solid var(--green);
+ border-radius: 8px; padding: 0.875rem 1rem;
+ font-size: 0.82rem; color: var(--green); line-height: 1.5;
+ margin-bottom: 1.25rem; display: flex; gap: 0.6rem; align-items: flex-start;
+ }
+ .builder-hint-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+ /* PLATE REFERENCE */
+ .plate-reference {
+ display: flex; gap: 0.5rem; align-items: center;
+ margin-bottom: 1rem; font-size: 0.78rem; color: var(--mid);
+ background: var(--cream); padding: 0.6rem 0.875rem;
+ border-radius: 6px; border: 1px solid var(--border);
+ }
+ .ref-plate {
+ width: 36px; height: 36px; border-radius: 50%;
+ border: 2px solid var(--dark); overflow: hidden;
+ position: relative; flex-shrink: 0;
+ }
+ .ref-half { position: absolute; inset: 0 50% 0 0; background: #c8f0d0; }
+ .ref-q1 { position: absolute; inset: 0 0 50% 50%; background: #ffd5c8; }
+ .ref-q2 { position: absolute; inset: 50% 0 0 50%; background: #fff3c8; }
+
+ /* TAB DESCRIPTIONS */
+ .proc-tab-wrap {
+ display: flex; flex-direction: column; gap: 2px; text-align: left;
+ }
+ .proc-tab-sub {
+ font-size: 0.68rem; font-weight: 400; opacity: 0.75;
+ display: block; line-height: 1.3;
+ }
+ .proc-tab.visited::after {
+ content: ' '; font-size: 0.75rem;
+ }
+
+ /* LABEL DECODER PULSE */
+ @keyframes pulse {
+ 0%, 100% { background: white; }
+ 50% { background: #fff8e1; }
+ }
+ .label-row.pulse-hint { animation: pulse 1.2s ease 3; }
+ .label-row-hint {
+ font-size: 0.72rem; color: var(--maple); font-weight: 600;
+ display: flex; align-items: center; gap: 4px;
+ margin-bottom: 0.5rem; padding: 0.4rem 0.6rem;
+ background: #fff8f0; border-radius: 6px;
+ border: 1px solid #fde0b8;
+ animation: pulse-border 1.5s ease 3;
+ }
+ @keyframes pulse-border {
+ 0%, 100% { border-color: #fde0b8; }
+ 50% { border-color: var(--maple); }
+ }
+
+ /* QUIZ RESULT LINKS */
+ .result-recommendations {
+ margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;
+ }
+ .result-rec {
+ background: #2a2a2a; border: 1px solid #3a3a3a;
+ border-radius: 8px; padding: 0.875rem 1.125rem;
+ display: flex; align-items: center; gap: 0.875rem;
+ cursor: pointer; transition: border-color 0.15s;
+ text-decoration: none;
+ }
+ .result-rec:hover { border-color: var(--red); }
+ .result-rec-icon { font-size: 1.2rem; }
+ .result-rec-text { }
+ .result-rec-title { font-weight: 600; font-size: 0.875rem; color: white; }
+ .result-rec-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+ .result-rec-arrow { margin-left: auto; color: var(--red); font-weight: 700; }
+
+ /* MOBILE BOTTOM NAV */
+ .mobile-nav {
+ display: none;
+ position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+ background: var(--white); border-top: 2px solid var(--dark);
+ padding: 0.5rem 0.25rem env(safe-area-inset-bottom, 0);
+ }
+ .mobile-nav-items {
+ display: flex; justify-content: space-around;
+ }
+ .mobile-nav-item {
+ display: flex; flex-direction: column; align-items: center;
+ gap: 2px; padding: 0.4rem 0.5rem; text-decoration: none;
+ color: var(--soft); transition: color 0.15s; min-width: 44px;
+ border-radius: 8px; cursor: pointer; border: none;
+ background: none; font-family: 'DM Sans', sans-serif;
+ }
+ .mobile-nav-item:hover, .mobile-nav-item.active-nav { color: var(--red); }
+ .mobile-nav-icon { font-size: 1.2rem; line-height: 1; }
+ .mobile-nav-label { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.03em; }
+
+ /* CAT BTN LARGER FOR TOUCH */
+ .cat-btn {
+ width: 44px !important; height: 44px !important;
+ font-size: 1.2rem !important;
+ }
+
+ /* RESPONSIVE */
+ @media (max-width: 900px) {
+ .hero { grid-template-columns: 1fr; }
+ .hero-visual { min-height: 300px; }
+ section { padding: 3.5rem 1.5rem; padding-bottom: 5rem; }
+ .builder-grid { grid-template-columns: 1fr; }
+ .plate-visual-wrapper { position: static; }
+ .tips-grid { grid-template-columns: 1fr; }
+ .decoder-layout { grid-template-columns: 1fr; }
+ .fake-label { width: 100%; position: static; }
+ .meal-detail-grid { grid-template-columns: 1fr 1fr; }
+ footer { grid-template-columns: 1fr 1fr; gap: 2rem; padding-bottom: 5rem; }
+ nav { padding: 0 1.5rem; }
+ .nav-links { display: none; }
+ .nav-cta { display: none; }
+ .improvements-banner { padding: 1rem 1.5rem; }
+ .mobile-nav { display: block; }
+ .site-progress { display: none; }
+ footer { padding-bottom: 6rem; }
+ }
+
+ /* PROCEDURAL SECTION */
+ #procedural { background: var(--cream); }
+
+ .proc-tabs {
+ display: flex; gap: 0.5rem; margin-bottom: 2.5rem;
+ flex-wrap: wrap;
+ }
+ .proc-tab {
+ padding: 0.6rem 1.25rem; border-radius: 2rem;
+ border: 2px solid var(--border); background: var(--white);
+ font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+ font-weight: 600; cursor: pointer; transition: all 0.2s;
+ color: var(--mid);
+ }
+ .proc-tab:hover { border-color: var(--green); color: var(--green); }
+ .proc-tab.active { background: var(--green); border-color: var(--green); color: white; }
+
+ .proc-panel { display: none; }
+ .proc-panel.active { display: block; }
+
+ .proc-layout {
+ display: grid; grid-template-columns: 1fr 1fr;
+ gap: 3rem; align-items: start;
+ }
+
+ .steps-list { display: flex; flex-direction: column; gap: 1.25rem; }
+ .step-item {
+ display: flex; gap: 1.25rem; align-items: flex-start;
+ background: var(--white); border: 2px solid var(--border);
+ border-radius: 10px; padding: 1.25rem 1.5rem;
+ transition: border-color 0.2s;
+ }
+ .step-item:hover { border-color: var(--green); }
+ .step-num {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.5rem; font-weight: 900;
+ color: var(--green); line-height: 1;
+ min-width: 2rem; flex-shrink: 0;
+ }
+ .step-content {}
+ .step-title {
+ font-weight: 700; font-size: 0.95rem;
+ color: var(--dark); margin-bottom: 0.4rem;
+ }
+ .step-body {
+ font-size: 0.875rem; line-height: 1.65;
+ color: var(--mid);
+ }
+ .step-body strong { color: var(--dark); }
+ .step-tip {
+ margin-top: 0.6rem; padding: 0.6rem 0.75rem;
+ background: var(--green-light); border-radius: 6px;
+ font-size: 0.8rem; color: var(--green); font-weight: 500;
+ border-left: 3px solid var(--green);
+ }
+
+ .portion-cards { display: flex; flex-direction: column; gap: 1rem; }
+ .portion-card {
+ background: var(--white); border: 2px solid var(--border);
+ border-radius: 10px; overflow: hidden;
+ }
+ .portion-header {
+ display: flex; align-items: center; gap: 1rem;
+ padding: 1rem 1.25rem;
+ border-bottom: 1px solid var(--border);
+ }
+ .portion-icon { font-size: 1.5rem; }
+ .portion-name { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
+ .portion-pct {
+ margin-left: auto; font-family: 'Playfair Display', serif;
+ font-size: 1.2rem; font-weight: 900;
+ }
+ .portion-body { padding: 1rem 1.25rem; }
+ .portion-amounts {
+ display: flex; flex-direction: column; gap: 0.4rem;
+ margin-bottom: 0.75rem;
+ }
+ .portion-row {
+ display: flex; align-items: center; gap: 0.6rem;
+ font-size: 0.82rem; color: var(--mid);
+ }
+ .portion-row::before {
+ content: '→'; color: var(--green); font-weight: 700;
+ flex-shrink: 0;
+ }
+ .portion-warning {
+ font-size: 0.78rem; background: #fff8f0;
+ border: 1px solid #fde0b8; border-radius: 6px;
+ padding: 0.5rem 0.75rem; color: var(--maple);
+ }
+
+ .common-mistake {
+ background: #fff5f5; border: 2px solid #fcc;
+ border-radius: 8px; padding: 1rem 1.25rem;
+ margin-top: 1rem;
+ }
+ .mistake-label {
+ font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+ text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem;
+ }
+ .mistake-text { font-size: 0.85rem; color: var(--mid); line-height: 1.6; }
+
+ .proc-visual {
+ position: sticky; top: 80px;
+ }
+ .plate-diagram {
+ width: 100%; max-width: 340px;
+ margin: 0 auto 1.5rem;
+ position: relative;
+ }
+ .plate-svg-wrap {
+ width: 100%; aspect-ratio: 1;
+ border-radius: 50%; overflow: hidden;
+ border: 4px solid var(--dark);
+ box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+ position: relative;
+ }
+ .plate-section {
+ position: absolute; display: flex;
+ flex-direction: column; align-items: center;
+ justify-content: center; padding: 1rem;
+ text-align: center;
+ }
+ .plate-section.veggies {
+ inset: 0 50% 0 0;
+ background: #c8f0d0;
+ border-right: 3px solid white;
+ }
+ .plate-section.protein {
+ inset: 0 0 50% 50%;
+ background: #ffd5c8;
+ border-bottom: 3px solid white;
+ }
+ .plate-section.grains {
+ inset: 50% 0 0 50%;
+ background: #fff3c8;
+ }
+ .plate-section-icon { font-size: 1.6rem; margin-bottom: 4px; }
+ .plate-section-label {
+ font-size: 0.62rem; font-weight: 700;
+ text-transform: uppercase; letter-spacing: 0.05em; color: var(--dark);
+ }
+ .plate-section-pct {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.4rem; font-weight: 900; color: var(--dark);
+ line-height: 1;
+ }
+ .plate-annotations {
+ display: flex; flex-direction: column; gap: 0.6rem;
+ margin-top: 1rem;
+ }
+ .annotation {
+ display: flex; align-items: flex-start; gap: 0.75rem;
+ font-size: 0.82rem; line-height: 1.5; color: var(--mid);
+ }
+ .annotation-dot {
+ width: 10px; height: 10px; border-radius: 50%;
+ flex-shrink: 0; margin-top: 4px;
+ }
+
+ .hunger-scale {
+ background: var(--white); border: 2px solid var(--border);
+ border-radius: 10px; padding: 1.25rem; margin-top: 1rem;
+ }
+ .hunger-title {
+ font-weight: 700; font-size: 0.875rem; margin-bottom: 1rem;
+ color: var(--dark);
+ }
+ .hunger-track {
+ display: flex; gap: 3px; margin-bottom: 0.75rem;
+ }
+ .hunger-block {
+ flex: 1; height: 32px; border-radius: 4px;
+ display: flex; align-items: center; justify-content: center;
+ font-size: 0.7rem; font-weight: 700; color: white;
+ cursor: default; transition: transform 0.1s;
+ }
+ .hunger-block:hover { transform: scaleY(1.15); }
+ .hunger-labels {
+ display: flex; justify-content: space-between;
+ font-size: 0.72rem; color: var(--soft);
+ }
+ .hunger-guide { font-size: 0.8rem; color: var(--mid); line-height: 1.5; }
+ .hunger-guide strong { color: var(--green); }
+
+ @media (max-width: 900px) {
+ .proc-layout { grid-template-columns: 1fr; }
+ .proc-visual { position: static; }
+ }
+
+ /* ANIMATIONS */
+ @keyframes fadeUp {
+ from { opacity: 0; transform: translateY(20px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+ .fade-up { animation: fadeUp 0.6s ease forwards; }
+ .fade-up-2 { animation: fadeUp 0.6s 0.15s ease forwards; opacity: 0; }
+ .fade-up-3 { animation: fadeUp 0.6s 0.3s ease forwards; opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- ONBOARDING OVERLAY -->
+<div class="onboarding-overlay" id="onboarding">
+ <div class="onboarding-card">
+ <div class="onboarding-logo">Canada\'s Food Guide</div>
+ <div class="onboarding-title">Welcome to Canada's Food Guide</div>
+ <div class="onboarding-sub">This is an interactive learning experience - not just a webpage. What brings you here today?</div>
+ <div class="onboarding-q">Choose your goal to get started</div>
+ <div class="onboarding-options">
+ <button class="onboarding-option" onclick="startJourney('builder')">
+ 
+ <div class="opt-text">
+ <div class="opt-title">I want to eat more balanced meals</div>
+ <div class="opt-sub">Start with the plate builder and portion guide</div>
+ </div>
+ </button>
+ <button class="onboarding-option" onclick="startJourney('decoder')">
+ 
+ <div class="opt-text">
+ <div class="opt-title">I want to understand food labels</div>
+ <div class="opt-sub">Go straight to the nutrition label decoder</div>
+ </div>
+ </button>
+ <button class="onboarding-option" onclick="startJourney('quiz')">
+ 
+ <div class="opt-text">
+ <div class="opt-title">I want to test my knowledge</div>
+ <div class="opt-sub">Take the 5-question Food Guide quiz</div>
+ </div>
+ </button>
+ <button class="onboarding-option" onclick="startJourney('procedural')">
+ 
+ <div class="opt-text">
+ <div class="opt-title">I want step-by-step cooking guidance</div>
+ <div class="opt-sub">See the how-to guide with real measurements</div>
+ </div>
+ </button>
+ </div>
+ <div class="onboarding-skip" onclick="dismissOnboarding()">Skip - explore on my own</div>
+ </div>
+</div>
+
+<!-- SITE PROGRESS TRACKER -->
+<div class="site-progress" id="siteProgress">
+ <span class="progress-label">Your progress</span>
+ <div class="progress-stops">
+ <a href="#builder" class="progress-stop" data-section="builder" onclick="markVisited('builder')">
+ <div class="stop-check"></div>Plate Builder
+ </a>
+ <a href="#procedural" class="progress-stop" data-section="procedural" onclick="markVisited('procedural')">
+ <div class="stop-check"></div>How-To Guide
+ </a>
+ <a href="#quiz" class="progress-stop" data-section="quiz" onclick="markVisited('quiz')">
+ <div class="stop-check"></div>Quiz
+ </a>
+ <a href="#tips" class="progress-stop" data-section="tips" onclick="markVisited('tips')">
+ <div class="stop-check"></div>Eating Tips
+ </a>
+ <a href="#decoder" class="progress-stop" data-section="decoder" onclick="markVisited('decoder')">
+ <div class="stop-check"></div>Label Decoder
+ </a>
+ <a href="#timing" class="progress-stop" data-section="timing" onclick="markVisited('timing')">
+ <div class="stop-check"></div>Meal Timing
+ </a>
+ </div>
+ <span class="progress-pct" id="progressPct">0 / 6</span>
+</div>
+
+<!-- NAV -->
+<nav>
+ <a href="#" class="nav-logo"> Canada's Food Guide</a>
+ <ul class="nav-links">
+ <li><a href="#builder">Plate Builder</a></li>
+ <li><a href="#procedural">How-To Guide</a></li>
+ <li><a href="#quiz">Quiz</a></li>
+ <li><a href="#tips">Eating Tips</a></li>
+ <li><a href="#decoder">Label Decoder</a></li>
+ <li><a href="#timing">Meal Timing</a></li>
+ </ul>
+ <button class="nav-cta" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Test Your Knowledge</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+ <div class="hero-text">
+ <span class="hero-eyebrow fade-up">Health Canada - Reimagined 2024</span>
+ <h1 class="fade-up-2">Eat <em>well,</em><br>live fully.</h1>
+ <p class="hero-desc fade-up-3">Canada's Food Guide, rebuilt as an interactive learning experience. Explore the plate model, test your knowledge, decode food labels, and build lasting healthy habits.</p>
+ <div class="hero-actions fade-up-3">
+ <a href="#builder" class="btn-primary">Build Your Plate</a>
+ <a href="#quiz" class="btn-secondary">Take the Quiz</a>
+ </div>
+ </div>
+ <div class="hero-visual">
+ <div class="hero-plate">
+ <div class="plate-circle">
+ <div class="plate-half left">
+ <div class="plate-pct">½</div>
+ <div class="plate-label">Vegetables<br>& Fruits</div>
+ </div>
+ <div class="plate-half right">
+ <div class="plate-quarter top">
+ <div class="plate-pct">¼</div>
+ <div class="plate-label">Protein<br>Foods</div>
+ </div>
+ <div class="plate-quarter bottom">
+ <div class="plate-pct">¼</div>
+ <div class="plate-label">Whole<br>Grains</div>
+ </div>
+ </div>
+ <div class="plate-line"></div>
+ </div>
+ </div>
+ <div class="hero-stats">
+ <div class="stat-pill"><strong>½</strong> veggies & fruits</div>
+ <div class="stat-pill"><strong>¼</strong> proteins</div>
+ <div class="stat-pill"><strong>¼</strong> whole grains</div>
+ </div>
+ </div>
+</section>
+
+<!-- IMPROVEMENTS BANNER -->
+<div class="improvements-banner">
+ <span class="imp-label"> Improvements over original</span>
+ <div class="imp-items">
+ <div class="imp-item">Interactive plate builder</div>
+ <div class="imp-item">Step-by-step portion guide</div>
+ <div class="imp-item">Mindful eating steps</div>
+ <div class="imp-item">Knowledge quiz with feedback</div>
+ <div class="imp-item">Nutrition label decoder</div>
+ <div class="imp-item">Whole grain identification guide</div>
+ <div class="imp-item">Meal timing guide</div>
+ <div class="imp-item">Plain-language explanations</div>
+ </div>
+</div>
+
+<!-- PLATE BUILDER -->
+<section id="builder">
+ <div class="section-label">Interactive Tool</div>
+ <div class="section-title">Build your ideal plate</div>
+ <p class="section-desc">Use the controls to add foods from each group and watch your plate fill up in real time. Get instant feedback on how balanced your meal is.</p>
+
+ <div class="builder-hint">
+ 
+ <span><strong>Goal:</strong> Fill half your plate with vegetables & fruits, one quarter with protein, and one quarter with whole grains. Use the + buttons to add food groups and watch your plate update in real time.</span>
+ </div>
+
+ <div class="builder-grid">
+ <div class="food-categories">
+
+ <div class="category-card" id="card-veg">
+ <div class="category-header">
+ 
+ <div class="cat-info">
+ <div class="cat-name">Vegetables & Fruits</div>
+ <div class="cat-desc">Fresh, frozen, or canned - all count!</div>
+ </div>
+ <div class="cat-amount">
+ <button class="cat-btn" onclick="adjustFood('veg',-1)">−</button>
+ <span class="cat-count" id="count-veg">0</span>
+ <button class="cat-btn" onclick="adjustFood('veg',1)">+</button>
+ </div>
+ </div>
+ </div>
+
+ <div class="category-card" id="card-protein">
+ <div class="category-header">
+ 
+ <div class="cat-info">
+ <div class="cat-name">Protein Foods</div>
+ <div class="cat-desc">Legumes, fish, poultry, eggs, tofu, nuts</div>
+ </div>
+ <div class="cat-amount">
+ <button class="cat-btn" onclick="adjustFood('protein',-1)">−</button>
+ <span class="cat-count" id="count-protein">0</span>
+ <button class="cat-btn" onclick="adjustFood('protein',1)">+</button>
+ </div>
+ </div>
+ </div>
+
+ <div class="category-card" id="card-grains">
+ <div class="category-header">
+ 
+ <div class="cat-info">
+ <div class="cat-name">Whole Grain Foods</div>
+ <div class="cat-desc">Oats, brown rice, whole wheat, quinoa</div>
+ </div>
+ <div class="cat-amount">
+ <button class="cat-btn" onclick="adjustFood('grains',-1)">−</button>
+ <span class="cat-count" id="count-grains">0</span>
+ <button class="cat-btn" onclick="adjustFood('grains',1)">+</button>
+ </div>
+ </div>
+ </div>
+
+ <div class="category-card" id="card-water">
+ <div class="category-header">
+ 
+ <div class="cat-info">
+ <div class="cat-name">Water</div>
+ <div class="cat-desc">Make water your drink of choice</div>
+ </div>
+ <div class="cat-amount">
+ <button class="cat-btn" onclick="adjustFood('water',-1)">−</button>
+ <span class="cat-count" id="count-water">0</span>
+ <button class="cat-btn" onclick="adjustFood('water',1)">+</button>
+ </div>
+ </div>
+ </div>
+
+ </div>
+
+ <div class="plate-visual-wrapper">
+ <div class="plate-builder-title">Your Plate</div>
+ <div class="plate-reference">
+ <div class="ref-plate">
+ <div class="ref-half"></div>
+ <div class="ref-q1"></div>
+ <div class="ref-q2"></div>
+ </div>
+ <span><strong>Target:</strong> ½ vegetables · ¼ protein · ¼ whole grains · Use a 9-inch plate</span>
+ </div>
+ <div class="plate-display" id="plateDisplay">
+ <canvas id="plateCanvas" width="300" height="300" style="position:absolute;inset:0;border-radius:50%;"></canvas>
+ <div class="plate-center">
+ <div class="plate-score">
+ <div class="score-num" id="plateScore">0</div>
+ <div class="score-label">Score</div>
+ </div>
+ </div>
+ </div>
+ <div class="plate-legend">
+ <div class="legend-item"><div class="legend-dot" style="background:#4CAF50"></div>Vegetables & Fruits</div>
+ <div class="legend-item"><div class="legend-dot" style="background:#FF7043"></div>Protein</div>
+ <div class="legend-item"><div class="legend-dot" style="background:#FDD835"></div>Grains</div>
+ <div class="legend-item"><div class="legend-dot" style="background:#42A5F5"></div>Water</div>
+ </div>
+ <div class="plate-feedback" id="plateFeedback" style="margin-top:1rem;">Start adding foods to see how your plate compares to the Food Guide recommendation.
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- PROCEDURAL: HOW TO BUILD YOUR PLATE -->
+<section id="procedural">
+ <div class="section-label">Step-by-Step Guide</div>
+ <div class="section-title">How to actually build a balanced plate</div>
+ <p class="section-desc">Canada's Food Guide tells you <em>what</em> to eat. This section teaches you <em>how</em> - with specific portions, real measurements, and the steps to follow every time you make a meal.</p>
+
+ <div class="proc-tabs">
+ <button class="proc-tab active" id="tab-portions" onclick="showPanel('portions', this)">
+ <div class="proc-tab-wrap"> Portions & Amounts<span class="proc-tab-sub">Exact measurements per food group</span></div>
+ </button>
+ <button class="proc-tab" id="tab-sequence" onclick="showPanel('sequence', this)">
+ <div class="proc-tab-wrap">Step-by-Step Sequence<span class="proc-tab-sub">What order to build your plate</span></div>
+ </button>
+ <button class="proc-tab" id="tab-mindful" onclick="showPanel('mindful', this)">
+ <div class="proc-tab-wrap">Mindful Eating Steps<span class="proc-tab-sub">How to eat, not just what to eat</span></div>
+ </button>
+ <button class="proc-tab" id="tab-grains" onclick="showPanel('grains', this)">
+ <div class="proc-tab-wrap">Identifying Whole Grains<span class="proc-tab-sub">How to read a grocery label</span></div>
+ </button>
+ </div>
+
+ <!-- PANEL 1: Portions -->
+ <div class="proc-panel active" id="panel-portions">
+ <div class="proc-layout">
+ <div>
+ <div class="portion-cards">
+
+ <div class="portion-card">
+ <div class="portion-header">
+ 
+ <div>
+ <div class="portion-name">Vegetables & Fruits</div>
+ <div style="font-size:0.78rem;color:var(--soft)">Fill this first - before anything else</div>
+ </div>
+ <div class="portion-pct" style="color:#4CAF50">½</div>
+ </div>
+ <div class="portion-body">
+ <div class="portion-amounts">
+ <div class="portion-row">1 to 1.5 cups of cooked broccoli, carrots, or green beans</div>
+ <div class="portion-row">2 cups of raw leafy greens like spinach or arugula</div>
+ <div class="portion-row">1 medium roasted sweet potato + a handful of cherry tomatoes</div>
+ <div class="portion-row">Any two vegetables combined to genuinely cover half the plate</div>
+ </div>
+ <div class="portion-warning"> A common mistake: three cherry tomatoes or a small side salad is not half a plate. Half means half - it should be the dominant thing you see on your plate.</div>
+ </div>
+ </div>
+
+ <div class="portion-card">
+ <div class="portion-header">
+ 
+ <div>
+ <div class="portion-name">Protein Foods</div>
+ <div style="font-size:0.78rem;color:var(--soft)">Roughly the size of your palm</div>
+ </div>
+ <div class="portion-pct" style="color:#FF7043">¼</div>
+ </div>
+ <div class="portion-body">
+ <div class="portion-amounts">
+ <div class="portion-row">75–90g cooked chicken, fish, or turkey - about the size of a deck of cards</div>
+ <div class="portion-row">¾ cup cooked lentils or black beans (roughly the size of a tennis ball)</div>
+ <div class="portion-row">2 large eggs</div>
+ <div class="portion-row">150g firm tofu - approximately the size of a hockey puck</div>
+ <div class="portion-row">¾ cup Greek yogurt (used as protein, not a side)</div>
+ </div>
+ <div class="portion-warning"> A standard chicken breast from most Canadian grocery stores is 200–250g - already 2–3x the Food Guide portion. Cook it, but use only part of it on your plate tonight. Use the rest tomorrow.</div>
+ </div>
+ </div>
+
+ <div class="portion-card">
+ <div class="portion-header">
+ 
+ <div>
+ <div class="portion-name">Whole Grain Foods</div>
+ <div style="font-size:0.78rem;color:var(--soft)">Tennis ball size - not the whole pot</div>
+ </div>
+ <div class="portion-pct" style="color:#c8a800">¼</div>
+ </div>
+ <div class="portion-body">
+ <div class="portion-amounts">
+ <div class="portion-row">½ cup cooked brown rice or quinoa - about half a tennis ball</div>
+ <div class="portion-row">½ cup cooked whole wheat pasta</div>
+ <div class="portion-row">1 slice of 100% whole grain bread</div>
+ <div class="portion-row">½ a whole grain pita or wrap</div>
+ <div class="portion-row">½ cup rolled oats (dry) at breakfast</div>
+ </div>
+ <div class="portion-warning"> How to spot a real whole grain: flip the package and check the ingredient list. The very first ingredient must include the word "whole" - e.g., whole wheat, whole oat, whole rye. "Multigrain" or "enriched flour" does not count.</div>
+ </div>
+ </div>
+
+ <div class="portion-card">
+ <div class="portion-header">
+ 
+ <div>
+ <div class="portion-name">Water</div>
+ <div style="font-size:0.78rem;color:var(--soft)">Place it on the table before you sit down</div>
+ </div>
+ <div class="portion-pct" style="color:#42A5F5">1 glass</div>
+ </div>
+ <div class="portion-body">
+ <div class="portion-amounts">
+ <div class="portion-row">250ml glass of water with every meal - set it out before you eat</div>
+ <div class="portion-row">Add a slice of lemon, cucumber, or mint if plain water feels boring</div>
+ <div class="portion-row">If you drink juice or soda with dinner, replace one drink per day this week - not all at once</div>
+ </div>
+ <div class="portion-warning"> 100% fruit juice is not the same as water. It is high in natural sugars and lacks the fibre of whole fruit. The Food Guide recommends choosing whole fruit over juice.</div>
+ </div>
+ </div>
+
+ </div>
+ </div>
+
+ <div class="proc-visual">
+ <div class="plate-diagram">
+ <div class="plate-svg-wrap">
+ <div class="plate-section veggies">
+ <div class="plate-section-pct">½</div>
+ <div class="plate-section-label">Vegetables<br>& Fruits</div>
+ </div>
+ <div class="plate-section protein">
+ <div class="plate-section-pct">¼</div>
+ <div class="plate-section-label">Protein<br>Foods</div>
+ </div>
+ <div class="plate-section grains">
+ <div class="plate-section-pct">¼</div>
+ <div class="plate-section-label">Whole<br>Grains</div>
+ </div>
+ </div>
+ </div>
+ <div class="plate-annotations">
+ <div class="annotation"><div class="annotation-dot" style="background:#4CAF50"></div><span><strong>Vegetables & fruits</strong> - fill this section first. If you plate your protein first, you will unconsciously leave too little room for vegetables.</span></div>
+ <div class="annotation"><div class="annotation-dot" style="background:#FF7043"></div><span><strong>Protein</strong> - aim for plant-based at least 2–3 nights per week. Lentils, chickpeas, tofu, and edamame are cheaper and higher in fibre than most meats.</span></div>
+ <div class="annotation"><div class="annotation-dot" style="background:#c8a800"></div><span><strong>Whole grains</strong> - a ½ cup serving is smaller than most people expect. Measure it once so you know what it looks like on your plate.</span></div>
+ </div>
+ <div class="common-mistake">
+ <div class="mistake-label"> Use a 9-inch plate</div>
+ <div class="mistake-text">Most dinner plates sold in Canada are 11–12 inches. Research shows that larger plates cause people to serve themselves significantly more food without realizing it. A 9-inch plate makes the Food Guide proportions visually accurate and keeps portions realistic.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- PANEL 2: Sequence -->
+ <div class="proc-panel" id="panel-sequence">
+ <div class="proc-layout">
+ <div class="steps-list">
+
+ <div class="step-item">
+ <div class="step-num">1</div>
+ <div class="step-content">
+ <div class="step-title">Choose a 9-inch plate</div>
+ <div class="step-body">Before you even open the fridge, set out a standard 9-inch dinner plate. The plate size determines how much you serve yourself. If the only plates you own are larger, consider buying one or two 9-inch plates for daily use - this single change has measurable impact on portion sizes.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">2</div>
+ <div class="step-content">
+ <div class="step-title">Fill half the plate with vegetables first - before anything else</div>
+ <div class="step-body">This is the single most important step and the one most people skip. Do not plate your protein or grains first and try to fit vegetables around them afterward. <strong>Start with vegetables.</strong> Fill the left half of the plate completely before you touch anything else. This ensures vegetables are the main event, not the afterthought.</div>
+ <div class="step-tip"> If fresh vegetables are not available or affordable, frozen and canned options are nutritionally equivalent and often cheaper. Rinse canned vegetables to lower the sodium content.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">3</div>
+ <div class="step-content">
+ <div class="step-title">Add protein to one quarter of the plate</div>
+ <div class="step-body">The top-right quarter of the plate is for protein. Place your palm flat on the counter - that palm size (not including fingers) represents roughly 75–90g, which is the appropriate serving. If you are using lentils or beans, ¾ cup fills the quarter comfortably. <strong>Aim to choose a plant-based protein at least twice this week.</strong></div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">4</div>
+ <div class="step-content">
+ <div class="step-title">Add whole grains to the remaining quarter</div>
+ <div class="step-body">The bottom-right quarter is for whole grains. A ½ cup of cooked grain - brown rice, quinoa, or whole wheat pasta - fills this section. This portion is smaller than most people expect. Measure it at least once so you have a visual reference for future meals without needing to measure every time.</div>
+ <div class="step-tip"> For mixed meals like stir-fries, soups, or grain bowls that do not fit neatly on a plate, apply the same proportions mentally: more vegetables by volume than anything else, a modest amount of protein, and a small base of whole grains.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">5</div>
+ <div class="step-content">
+ <div class="step-title">Place a glass of water on the table before you sit down</div>
+ <div class="step-body">This is a habit cue, not just a hydration tip. Placing water on the table <em>before</em> you eat makes it the default drink. You will reach for it without thinking. If you currently drink juice or soda with dinner, do not try to eliminate it entirely this week - just add the water alongside it and reduce the other drink gradually over two to three weeks.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">6</div>
+ <div class="step-content">
+ <div class="step-title">Sit down and remove one screen before eating</div>
+ <div class="step-body">You do not need to eat in silence. But eating while watching a screen consistently leads people to consume more than they intended without noticing. Remove one distraction - phone off the table, or television off - and eat with at least minimal attention on your food. This alone is the beginning of mindful eating.</div>
+ </div>
+ </div>
+
+ </div>
+
+ <div class="proc-visual">
+ <div class="plate-diagram">
+ <div class="plate-svg-wrap">
+ <div class="plate-section veggies">
+ <div class="plate-section-pct">½</div>
+ <div class="plate-section-label">Step 2<br>First</div>
+ </div>
+ <div class="plate-section protein">
+ <div class="plate-section-pct">¼</div>
+ <div class="plate-section-label">Step 3<br>Second</div>
+ </div>
+ <div class="plate-section grains">
+ <div class="plate-section-pct">¼</div>
+ <div class="plate-section-label">Step 4<br>Third</div>
+ </div>
+ </div>
+ </div>
+ <div class="common-mistake">
+ <div class="mistake-label"> When meals don't fit a plate</div>
+ <div class="mistake-text">Soups, stir-fries, tacos, and grain bowls don't look like the plate diagram - and that's fine. Apply the proportions mentally: a vegetable soup should have more vegetables than anything else by volume. A stir-fry should be mostly vegetables, with smaller amounts of protein and grain. A grain bowl starts with greens, not grain.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- PANEL 3: Mindful Eating -->
+ <div class="proc-panel" id="panel-mindful">
+ <div class="proc-layout">
+ <div class="steps-list">
+
+ <div class="step-item">
+ <div class="step-num">1</div>
+ <div class="step-content">
+ <div class="step-title">Before you eat: pause and rate your hunger</div>
+ <div class="step-body">Before picking up your fork, sit down and ask yourself: on a scale of 1 to 10, how hungry am I right now? If you are below a 4, you may be eating out of boredom, stress, habit, or because food is simply in front of you - not genuine hunger. This pause does not mean you should not eat. It simply builds awareness of why you are eating, which is the foundation of a healthier relationship with food.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">2</div>
+ <div class="step-content">
+ <div class="step-title">Put your fork down between bites</div>
+ <div class="step-body">This feels awkward at first. That awkwardness is intentional - it forces a physical pause between bites. <strong>Your body takes 15 to 20 minutes to signal fullness from the start of a meal.</strong> Eating quickly means you can be well past comfortable fullness before that signal arrives. Putting your fork down briefly between bites extends your eating time without requiring willpower.</div>
+ <div class="step-tip"> You do not need to do this for every bite. Even 5–6 pauses during a meal extends the total eating time meaningfully.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">3</div>
+ <div class="step-content">
+ <div class="step-title">Remove one screen from your meal - not all of them</div>
+ <div class="step-body">Research consistently shows that eating while distracted by screens leads people to eat faster and consume more without noticing. You do not need to eat in complete silence. Start by removing your phone from the table at one meal per day - whichever meal is easiest. Do not attempt to change all your meals at once. One change, consistently, is more effective than several changes attempted and abandoned.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">4</div>
+ <div class="step-content">
+ <div class="step-title">Aim to stop eating at a 7 on the hunger scale</div>
+ <div class="step-body">Comfortably full - satisfied but not stuffed - is approximately a 7 out of 10. This is harder to identify than it sounds, especially for adults who grew up being told to finish everything on their plate. Practicing this takes several weeks before it starts to feel intuitive. A practical cue: when you notice that you have slowed down your eating pace naturally, you are likely approaching a 7.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">5</div>
+ <div class="step-content">
+ <div class="step-title">After overeating: note when and why - not to feel guilty, but to find the pattern</div>
+ <div class="step-body">Most overeating is not random. It tends to happen at predictable times - late at night, during stress, in social situations, or when a specific food is visible. For one week, make a quick note after any meal where you ate more than intended: the time, the situation, and your hunger level going in. Within a week you will likely see a clear pattern - and patterns are far easier to address than vague feelings of "bad eating."</div>
+ <div class="step-tip"> This is not a food diary or calorie tracking. It is a pattern-finding exercise. One week is usually enough.</div>
+ </div>
+ </div>
+
+ </div>
+
+ <div class="proc-visual">
+ <div class="hunger-scale">
+ <div class="hunger-title">The Hunger Scale - where should you eat and stop?</div>
+ <div class="hunger-track">
+ <div class="hunger-block" style="background:#ef5350" title="1 - Starving">1</div>
+ <div class="hunger-block" style="background:#f4824a" title="2 - Very hungry">2</div>
+ <div class="hunger-block" style="background:#ff9800" title="3 - Hungry">3</div>
+ <div class="hunger-block" style="background:#ffc107" title="4 - Slightly hungry">4</div>
+ <div class="hunger-block" style="background:#d4e157" title="5 - Neutral">5</div>
+ <div class="hunger-block" style="background:#aed581" title="6 - Slightly satisfied">6</div>
+ <div class="hunger-block" style="background:#4CAF50" title="7 - Comfortably full">7</div>
+ <div class="hunger-block" style="background:#43a047" title="8 - Full">8</div>
+ <div class="hunger-block" style="background:#388e3c" title="9 - Very full">9</div>
+ <div class="hunger-block" style="background:#1b5e20" title="10 - Stuffed">10</div>
+ </div>
+ <div class="hunger-labels"><span>Starving</span><span>Stuffed</span></div>
+ <div class="hunger-guide" style="margin-top:1rem">
+ <strong>Start eating at 3–4</strong> - genuinely hungry but not ravenous. Waiting until you are a 1 or 2 makes it much harder to eat slowly or make considered choices.<br><br>
+ <strong>Stop eating at 7</strong> - satisfied but comfortable. You should be able to take a deep breath easily. If you feel heavy or need to loosen your clothing, you have gone past a 7.
+ </div>
+ </div>
+ <div class="common-mistake" style="margin-top:1rem">
+ <div class="mistake-label"> The most common mindful eating mistake</div>
+ <div class="mistake-text">Trying to change everything at once. Pick one step from this list - just one - and practice it at every meal for two weeks before adding another. Sustainable habit change is built one step at a time, not all at once.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- PANEL 4: Identifying Whole Grains -->
+ <div class="proc-panel" id="panel-grains">
+ <div class="proc-layout">
+ <div class="steps-list">
+
+ <div class="step-item">
+ <div class="step-num">1</div>
+ <div class="step-content">
+ <div class="step-title">Ignore the front of the package entirely</div>
+ <div class="step-body">Words like "multigrain," "made with whole grain," "hearty," "natural," or "brown" on the front of a package are marketing language and are not regulated in the same way as the ingredient list. A product can use these words even if whole grain is not the primary ingredient. <strong>The front of the package tells you nothing reliable about whether a product is truly whole grain.</strong></div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">2</div>
+ <div class="step-content">
+ <div class="step-title">Flip the package and find the ingredient list</div>
+ <div class="step-body">The ingredient list is on the back or side of every packaged food in Canada. Ingredients are listed in order from most to least by weight. The ingredient that appears first is present in the largest amount. This is the only place that tells you what a product is actually made of.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">3</div>
+ <div class="step-content">
+ <div class="step-title">Check that the very first ingredient says "whole"</div>
+ <div class="step-body">For a product to be a true whole grain food, the first ingredient must include the word "whole." Look for: <strong>whole wheat flour, whole grain oats, whole grain rye, whole grain corn.</strong> If the first ingredient says "enriched flour," "wheat flour," "unbleached flour," or anything without "whole," the product is primarily made from refined grain - regardless of what the front of the package claims.</div>
+ <div class="step-tip"> "Enriched" means nutrients were added back after being removed during processing. It does not mean the grain is whole. Enriched flour is still refined flour.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">4</div>
+ <div class="step-content">
+ <div class="step-title">Check the fibre content on the Nutrition Facts table</div>
+ <div class="step-body">As a general rule, a genuinely whole grain product will have at least 2 grams of dietary fibre per serving - and ideally 3 or more. Find the Nutrition Facts table (the black-and-white box) and look for "Dietary Fibre" under "Total Carbohydrate." A fibre content of less than 1g per serving is a strong signal that the product is primarily refined grain, even if it uses whole grain language.</div>
+ </div>
+ </div>
+
+ <div class="step-item">
+ <div class="step-num">5</div>
+ <div class="step-content">
+ <div class="step-title">Practical whole grains that require no label reading</div>
+ <div class="step-body">The simplest approach is to choose grains that are inherently whole: <strong>oats, brown rice, quinoa, barley, bulgur, farro, millet.</strong> These come in their whole form with no processing and no label confusion. Oats cooked on the stovetop, brown rice instead of white, quinoa as a base for a grain bowl - these require no ingredient list checking because the food itself is the whole grain.</div>
+ <div class="step-tip"> Frozen brown rice microwaves in 3 minutes. It is just as nutritious as stovetop, costs less per serving than most packaged grain products, and requires no label reading at all.</div>
+ </div>
+ </div>
+
+ </div>
+
+ <div class="proc-visual">
+ <div style="background:var(--white);border:2px solid var(--dark);border-radius:10px;padding:1.5rem;box-shadow:6px 6px 0 var(--dark);">
+ <div style="font-weight:700;font-size:0.9rem;margin-bottom:1rem;color:var(--dark)"> Reading an Ingredient List - Example</div>
+ <div style="background:#f9f7f4;border-radius:6px;padding:1rem;font-size:0.8rem;line-height:1.8;margin-bottom:1rem">
+ <div style="font-weight:700;color:var(--dark);margin-bottom:4px">INGREDIENTS (Product A - Whole Grain):</div>
+ <div><span style="background:#c8f0d0;padding:1px 4px;border-radius:3px;font-weight:700">Whole wheat flour</span>, water, yeast, salt, sunflower oil</div>
+ <div style="margin-top:8px;font-size:0.75rem;color:var(--green)"> First ingredient says "whole" - this is a genuine whole grain product</div>
+ </div>
+ <div style="background:#f9f7f4;border-radius:6px;padding:1rem;font-size:0.8rem;line-height:1.8;margin-bottom:1rem">
+ <div style="font-weight:700;color:var(--dark);margin-bottom:4px">INGREDIENTS (Product B - Not Whole Grain):</div>
+ <div><span style="background:#ffd5c8;padding:1px 4px;border-radius:3px;font-weight:700">Enriched wheat flour</span>, whole wheat flour, water, yeast, sugar, salt</div>
+ <div style="margin-top:8px;font-size:0.75rem;color:var(--red)"> First ingredient is enriched (refined) flour. The "whole wheat flour" is secondary - this is primarily a refined grain product, despite the packaging.</div>
+ </div>
+ <div style="background:#f9f7f4;border-radius:6px;padding:1rem;font-size:0.8rem;line-height:1.8">
+ <div style="font-weight:700;color:var(--dark);margin-bottom:4px">No-label whole grains - always safe:</div>
+ <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
+ <span style="background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:3px;font-weight:600;font-size:0.75rem">Oats</span>
+ <span style="background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:3px;font-weight:600;font-size:0.75rem">Brown Rice</span>
+ <span style="background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:3px;font-weight:600;font-size:0.75rem">Quinoa</span>
+ <span style="background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:3px;font-weight:600;font-size:0.75rem">Barley</span>
+ <span style="background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:3px;font-weight:600;font-size:0.75rem">Bulgur</span>
+ <span style="background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:3px;font-weight:600;font-size:0.75rem">Farro</span>
+ <span style="background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:3px;font-weight:600;font-size:0.75rem">Millet</span>
+ </div>
+ </div>
+ </div>
+ <div class="common-mistake" style="margin-top:1rem">
+ <div class="mistake-label"> The "multigrain" trap</div>
+ <div class="mistake-text">"Multigrain" means a product contains more than one type of grain - but none of them need to be whole. A multigrain product made from five different refined grains is still a refined grain product. Always check the ingredient list, not the front-of-package claim.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+ <div class="section-label">Test Your Knowledge</div>
+ <div class="section-title">How food-smart are you?</div>
+ <p class="section-desc">5 questions drawn from Canada's Food Guide. Get instant explanations for every answer - right or wrong.</p>
+
+ <div class="quiz-card">
+ <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgress"></div></div>
+ <div id="quizMain">
+ <div class="quiz-q-num" id="quizNum">Question 1 of 5</div>
+ <div class="quiz-question" id="quizQuestion"></div>
+ <div class="quiz-options" id="quizOptions"></div>
+ <div class="quiz-feedback" id="quizFeedback"></div>
+ <button class="quiz-next" id="quizNext" onclick="nextQuestion()">Next Question →</button>
+ </div>
+ <div class="quiz-result" id="quizResult">
+ <div class="result-score" id="resultScore">0/5</div>
+ <div class="result-msg" id="resultMsg"></div>
+ <div class="result-recommendations" id="resultRecs"></div>
+ <button class="quiz-restart" onclick="startQuiz()" style="margin-top:1.5rem">Try Again</button>
+ </div>
+ </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+ <div class="section-label">Healthy Eating Tips</div>
+ <div class="section-title">Beyond what you eat</div>
+ <p class="section-desc">Canada's Food Guide emphasizes that healthy eating is also about <em>how</em> you eat - your habits, mindset, and environment matter just as much as your food choices.</p>
+
+ <div class="tips-grid">
+
+ <div class="tip-card">
+ 
+ <h3>Be Mindful</h3>
+ <p>Eat slowly, without distractions. Pay attention to hunger and fullness cues.</p>
+ <div class="tip-expand" onclick="toggleTip(this)">Learn more ↓</div>
+ <div class="tip-detail">Mindful eating means noticing the colours, smells, textures, and flavours of your food. Try putting your fork down between bites. Avoid eating in front of screens - it leads to consuming 15–25% more calories without realizing it.</div>
+ </div>
+
+ <div class="tip-card">
+ 
+ <h3>Cook More Often</h3>
+ <p>Home cooking gives you control over ingredients, portions, and nutrition.</p>
+ <div class="tip-expand" onclick="toggleTip(this)">Learn more ↓</div>
+ <div class="tip-detail">People who cook at home more frequently eat fewer calories, less sugar, and less fat. Even simple meals matter. Batch cooking on weekends can make weeknight meals stress-free. Frozen vegetables and canned legumes are healthy shortcuts.</div>
+ </div>
+
+ <div class="tip-card">
+ 
+ <h3>Enjoy Your Food</h3>
+ <p>Food is about pleasure and culture, not just nutrients. Enjoy every meal.</p>
+ <div class="tip-expand" onclick="toggleTip(this)">Learn more ↓</div>
+ <div class="tip-detail">A positive relationship with food supports both physical and mental health. Avoid guilt around eating. All foods can fit into a balanced diet - the key is overall patterns over time, not single meals. Celebrate cultural food traditions.</div>
+ </div>
+
+ <div class="tip-card">
+ 
+ <h3>Eat with Others</h3>
+ <p>Sharing meals strengthens social bonds and promotes healthier eating habits.</p>
+ <div class="tip-expand" onclick="toggleTip(this)">Learn more ↓</div>
+ <div class="tip-detail">Research shows people who eat with others regularly are more likely to eat a wider variety of nutritious foods. Family meals are especially important for children, but community eating benefits adults too. Try scheduling one shared meal per day.</div>
+ </div>
+
+ <div class="tip-card">
+ 
+ <h3>Limit Processed Foods</h3>
+ <p>Highly processed foods are often high in sodium, sugar, and unhealthy fats.</p>
+ <div class="tip-expand" onclick="toggleTip(this)">Learn more ↓</div>
+ <div class="tip-detail">Ultra-processed foods include packaged snacks, fast food, sugary drinks, and many breakfast cereals. They account for nearly half of Canadians' daily caloric intake. Focus on whole or minimally processed foods as the majority of your diet.</div>
+ </div>
+
+ <div class="tip-card">
+ 
+ <h3>Know Food Marketing</h3>
+ <p>Advertising is designed to influence your choices - often toward unhealthy options.</p>
+ <div class="tip-expand" onclick="toggleTip(this)">Learn more ↓</div>
+ <div class="tip-detail">Health claims on packaging can be misleading. "Natural," "low fat," or "multigrain" doesn't always mean nutritious. Always check the Nutrition Facts table. Children are particularly vulnerable to food marketing -Health Canada is working to restrict it.</div>
+ </div>
+
+ </div>
+</section>
+
+<!-- LABEL DECODER -->
+<section id="decoder">
+ <div class="section-label">Interactive Tool</div>
+ <div class="section-title">Decode a nutrition label</div>
+ <p class="section-desc">Click on any row of the sample nutrition label to get a plain-language explanation of what it means and what to look for.</p>
+
+ <div class="decoder-layout">
+ <div class="fake-label">
+ <div style="position:relative"><span class="improvement-note">NEW</span></div>
+ <div class="label-title">Nutrition Facts</div>
+ <div class="label-serving">Per 1 cup (250 mL) | About 4 servings per container</div>
+ <div class="label-calories"><span>Calories</span><span>210</span></div>
+ <div style="font-size:0.65rem;margin-bottom:4px;text-align:right;color:#666">% Daily Value *</div>
+
+ <div class="label-row" onclick="highlightLabel(this,'fat')">
+ <span><b>Total Fat</b> 8g</span><span><b>10%</b></span>
+ </div>
+ <div class="label-row subrow" onclick="highlightLabel(this,'satfat')">
+ <span>Saturated fat 2g</span><span>10%</span>
+ </div>
+ <div class="label-row subrow" onclick="highlightLabel(this,'transfat')">
+ <span>Trans fat 0g</span>
+ </div>
+ <div class="label-row" onclick="highlightLabel(this,'sodium')">
+ <span><b>Sodium</b> 480mg</span><span><b>21%</b></span>
+ </div>
+ <div class="label-row" onclick="highlightLabel(this,'carbs')">
+ <span><b>Total Carbohydrate</b> 37g</span><span><b>13%</b></span>
+ </div>
+ <div class="label-row subrow" onclick="highlightLabel(this,'fibre')">
+ <span>Dietary Fibre 4g</span><span>14%</span>
+ </div>
+ <div class="label-row subrow" onclick="highlightLabel(this,'sugar')">
+ <span>Total Sugars 12g</span>
+ </div>
+ <div class="label-row" onclick="highlightLabel(this,'protein')">
+ <span><b>Protein</b> 3g</span>
+ </div>
+ <div class="label-row" onclick="highlightLabel(this,'vitamin')">
+ <span>Vitamin D 2mcg</span><span>10%</span>
+ </div>
+ <div class="label-row" onclick="highlightLabel(this,'calcium')">
+ <span>Calcium 260mg</span><span>20%</span>
+ </div>
+ <div class="label-footer">* 5% or less is a little, 15% or more is a lot.</div>
+ </div>
+
+ <div class="decoder-explainers">
+ <div class="label-row-hint">Click any row on the label to the left to learn what it means
+ </div>
+
+ <div class="explainer-card" id="exp-fat" data-key="fat">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Total Fat</span>
+ <span class="explainer-badge badge-watch">Watch</span>
+ </div>
+ <div class="explainer-body">Fat is essential for your body - but not all fats are equal. The total fat line includes healthy unsaturated fats (from avocado, nuts, olive oil) and less healthy saturated fats. Aim to get fats mostly from plant-based sources. <strong>10% DV is moderate</strong> - not a concern on its own.
+ </div>
+ </div>
+
+ <div class="explainer-card" id="exp-satfat" data-key="satfat">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Saturated Fat</span>
+ <span class="explainer-badge badge-limit">Limit</span>
+ </div>
+ <div class="explainer-body">Saturated fat is found in butter, fatty meats, and full-fat dairy. Too much can raise LDL ("bad") cholesterol.Health Canada recommends choosing foods with 5% DV or less when possible. <strong>10% DV</strong> is getting close to the "a lot" threshold - worth noting.
+ </div>
+ </div>
+
+ <div class="explainer-card" id="exp-transfat" data-key="transfat">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Trans Fat</span>
+ <span class="explainer-badge badge-limit">Limit</span>
+ </div>
+ <div class="explainer-body">Trans fats raise bad cholesterol AND lower good cholesterol - a double hit to heart health.Health Canada has banned artificial trans fats in food since 2018. <strong>0g is ideal.</strong> Small amounts may still appear naturally in some dairy and meat products.
+ </div>
+ </div>
+
+ <div class="explainer-card" id="exp-sodium" data-key="sodium">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Sodium</span>
+ <span class="explainer-badge badge-limit">Limit</span>
+ </div>
+ <div class="explainer-body">Sodium (salt) is the #1 thing to watch on Canadian nutrition labels. Most Canadians eat almost double the recommended amount. <strong>21% DV in one serving is high</strong> - nearly a quarter of your daily max. High sodium is linked to high blood pressure and heart disease. Look for products with 5% DV or less.
+ </div>
+ </div>
+
+ <div class="explainer-card" id="exp-carbs" data-key="carbs">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Total Carbohydrate</span>
+ <span class="explainer-badge badge-watch">Watch</span>
+ </div>
+ <div class="explainer-body">Carbs are your body's main energy source. But not all carbs are the same. This number includes fibre (good!), natural sugars, and added sugars. The key is the <em>quality</em> of carbs - whole grains and vegetables are far better than refined carbs and sugary snacks.
+ </div>
+ </div>
+
+ <div class="explainer-card" id="exp-fibre" data-key="fibre">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Dietary Fibre</span>
+ <span class="explainer-badge badge-good">Good</span>
+ </div>
+ <div class="explainer-body">Fibre is one of the most important nutrients most Canadians don't get enough of. It supports digestion, helps you feel full, lowers cholesterol, and reduces risk of diabetes and heart disease. <strong>14% DV is great!</strong> Aim for 25–38g per day from whole grains, legumes, fruits and vegetables.
+ </div>
+ </div>
+
+ <div class="explainer-card" id="exp-sugar" data-key="sugar">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Total Sugars</span>
+ <span class="explainer-badge badge-watch">Watch</span>
+ </div>
+ <div class="explainer-body">This includes both natural sugars (from fruit, dairy) and added sugars (from processing). Canada's label doesn't separate them - check the ingredients list for clues. Words ending in "-ose" (glucose, fructose, sucrose) and syrups are added sugars. Limit added sugars to less than 10% of daily calories.
+ </div>
+ </div>
+
+ <div class="explainer-card" id="exp-protein" data-key="protein">
+ <div class="explainer-header">
+ 
+ <span class="explainer-title">Protein</span>
+ <span class="explainer-badge badge-good">Good</span>
+ </div>
+ <div class="explainer-body">Protein builds and repairs tissues, makes enzymes, and keeps you feeling full. No % DV is shown in Canada because protein deficiency is rare. Adults need roughly 0.8g per kg of body weight daily. Prioritize plant-based proteins (legumes, tofu, nuts) alongside poultry, fish, and eggs.
+ </div>
+ </div>
+
+ </div>
+ </div>
+</section>
+
+<!-- MEAL TIMING -->
+<section id="timing">
+ <div class="section-label">Daily Guide</div>
+ <div class="section-title">Eating through the day</div>
+ <p class="section-desc">When you eat matters as much as what you eat. Explore a balanced day of eating based on Food Guide principles - click each meal to see food ideas.</p>
+
+ <div class="timeline">
+ <div class="timeline-stop active" onclick="showMeal('breakfast', this)">
+ <div style="font-size:0.75rem;color:var(--yellow);font-weight:700">7:00 AM</div>
+ <div class="timeline-dot"></div>
+ <div class="timeline-meal">Breakfast</div>
+ <div class="timeline-note">Fuel your morning with protein + complex carbs</div>
+ </div>
+ <div class="timeline-stop" onclick="showMeal('snack1', this)">
+ <div style="font-size:0.75rem;color:var(--yellow);font-weight:700">10:00 AM</div>
+ <div class="timeline-dot"></div>
+ <div class="timeline-meal">Morning Snack</div>
+ <div class="timeline-note">Optional - only if hungry</div>
+ </div>
+ <div class="timeline-stop" onclick="showMeal('lunch', this)">
+ <div style="font-size:0.75rem;color:var(--yellow);font-weight:700">12:30 PM</div>
+ <div class="timeline-dot"></div>
+ <div class="timeline-meal">Lunch</div>
+ <div class="timeline-note">Biggest meal for many - apply the plate model</div>
+ </div>
+ <div class="timeline-stop" onclick="showMeal('snack2', this)">
+ <div style="font-size:0.75rem;color:var(--yellow);font-weight:700">3:30 PM</div>
+ <div class="timeline-dot"></div>
+ <div class="timeline-meal">Afternoon Snack</div>
+ <div class="timeline-note">Avoid energy crashes before dinner</div>
+ </div>
+ <div class="timeline-stop" onclick="showMeal('dinner', this)">
+ <div style="font-size:0.75rem;color:var(--yellow);font-weight:700">6:00 PM</div>
+ <div class="timeline-dot"></div>
+ <div class="timeline-meal">Dinner</div>
+ <div class="timeline-note">Shared meal - social eating encouraged</div>
+ </div>
+ </div>
+
+ <div class="meal-detail active" id="meal-breakfast">
+ <h3> Breakfast Ideas</h3>
+ <div class="meal-detail-grid">
+ <div class="meal-item"><strong>Oatmeal</strong> with berries, seeds, and a drizzle of honey</div>
+ <div class="meal-item"><strong>Eggs</strong> on whole grain toast with sliced tomato</div>
+ <div class="meal-item"><strong>Smoothie</strong> with spinach, banana, Greek yogurt, and flax</div>
+ </div>
+ </div>
+ <div class="meal-detail" id="meal-snack1">
+ <h3> Morning Snack Ideas</h3>
+ <div class="meal-detail-grid">
+ <div class="meal-item"><strong>Apple</strong> with a tablespoon of almond butter</div>
+ <div class="meal-item"><strong>Cottage cheese</strong> with cucumber slices</div>
+ <div class="meal-item"><strong>Veggies & hummus</strong> - filling and high in fibre</div>
+ </div>
+ </div>
+ <div class="meal-detail" id="meal-lunch">
+ <h3> Lunch Ideas</h3>
+ <div class="meal-detail-grid">
+ <div class="meal-item"><strong>Grain bowl</strong>: quinoa, roasted veggies, chickpeas, tahini</div>
+ <div class="meal-item"><strong>Tuna wrap</strong> on whole wheat with spinach and avocado</div>
+ <div class="meal-item"><strong>Lentil soup</strong> with a side salad and whole grain bread</div>
+ </div>
+ </div>
+ <div class="meal-detail" id="meal-snack2">
+ <h3> Afternoon Snack Ideas</h3>
+ <div class="meal-detail-grid">
+ <div class="meal-item"><strong>Orange</strong> or other citrus fruit - vitamin C boost</div>
+ <div class="meal-item"><strong>Mixed nuts</strong> (small handful) - healthy fats + protein</div>
+ <div class="meal-item"><strong>Greek yogurt</strong> with a handful of blueberries</div>
+ </div>
+ </div>
+ <div class="meal-detail" id="meal-dinner">
+ <h3> Dinner Ideas</h3>
+ <div class="meal-detail-grid">
+ <div class="meal-item"><strong>Baked salmon</strong> with roasted broccoli and brown rice</div>
+ <div class="meal-item"><strong>Black bean tacos</strong> with shredded cabbage and salsa</div>
+ <div class="meal-item"><strong>Stir-fry</strong> with chicken, bok choy, bell peppers, soba noodles</div>
+ </div>
+ </div>
+</section>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+ <div class="mobile-nav-items">
+ <a href="#builder" class="mobile-nav-item" onclick="markVisited('builder')">
+ 
+ <span class="mobile-nav-label">Plate</span>
+ </a>
+ <a href="#procedural" class="mobile-nav-item" onclick="markVisited('procedural')">
+ 
+ <span class="mobile-nav-label">How-To</span>
+ </a>
+ <a href="#quiz" class="mobile-nav-item" onclick="markVisited('quiz')">
+ 
+ <span class="mobile-nav-label">Quiz</span>
+ </a>
+ <a href="#decoder" class="mobile-nav-item" onclick="markVisited('decoder')">
+ 
+ <span class="mobile-nav-label">Labels</span>
+ </a>
+ <a href="#timing" class="mobile-nav-item" onclick="markVisited('timing')">
+ <span class="mobile-nav-label">Timing</span>
+ </a>
+ <a href="#tips" class="mobile-nav-item" onclick="markVisited('tips')">
+ 
+ <span class="mobile-nav-label">Tips</span>
+ </a>
+ </div>
+</nav>
+
+<!-- FOOTER -->
+<footer>
+ <div>
+ <div class="footer-brand"> Canada's Food Guide</div>
+ <div class="footer-note">This is a reimagined, interactive version of Canada's official Food Guide, created to improve adult engagement and learning. Content is based onHealth Canada's 2019 guidelines.</div>
+ </div>
+ <div>
+ <h4>Tools</h4>
+ <ul>
+ <li><a href="#builder">Plate Builder</a></li>
+ <li><a href="#procedural">How-To Guide</a></li>
+ <li><a href="#quiz">Knowledge Quiz</a></li>
+ <li><a href="#decoder">Label Decoder</a></li>
+ <li><a href="#timing">Meal Timing</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Learn</h4>
+ <ul>
+ <li><a href="#tips">Healthy Eating Tips</a></li>
+ <li><a href="https://food-guide.canada.ca/en/guidelines/" target="_blank">Dietary Guidelines ↗</a></li>
+ <li><a href="https://food-guide.canada.ca/en/kitchen/" target="_blank">Recipes ↗</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Official Sources</h4>
+ <ul>
+ <li><a href="https://food-guide.canada.ca/en/" target="_blank">food-guide.canada.ca ↗</a></li>
+ <li><a href="https://www.canada.ca/en/health-canada.html" target="_blank">Health Canada ↗</a></li>
+ </ul>
+ </div>
+</footer>
+<div class="footer-disclaimer">
+ <span>Based on Canada's Food Guide (Health Canada, 2019). This is a UX improvement prototype.</span>
+ <span>Government of Canada · Gouvernement du Canada </span>
+</div>
+
+<script>
+// ONBOARDING & PROGRESS 
+const visited = new Set();
+const sections = ['builder','procedural','quiz','tips','decoder','timing'];
+
+function dismissOnboarding() {
+ document.getElementById('onboarding').classList.add('hidden');
+ setupIntersectionObserver();
+}
+
+function startJourney(target) {
+ dismissOnboarding();
+ setTimeout(() => {
+ const el = document.getElementById(target);
+ if (el) el.scrollIntoView({ behavior: 'smooth' });
+ markVisited(target);
+ }, 100);
+}
+
+function markVisited(sectionId) {
+ visited.add(sectionId);
+ updateProgress();
+}
+
+function updateProgress() {
+ sections.forEach(id => {
+ const stop = document.querySelector(`.progress-stop[data-section="${id}"]`);
+ if (stop) stop.classList.toggle('visited', visited.has(id));
+ });
+ const pct = document.getElementById('progressPct');
+ if (pct) pct.textContent = `${visited.size} / ${sections.length}`;
+}
+
+function setupIntersectionObserver() {
+ const observer = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ const id = entry.target.id;
+ if (sections.includes(id)) markVisited(id);
+ }
+ });
+ }, { threshold: 0.25 });
+ sections.forEach(id => {
+ const el = document.getElementById(id);
+ if (el) observer.observe(el);
+ });
+}
+
+// Hide/show progress bar on scroll
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+ const prog = document.getElementById('siteProgress');
+ if (!prog) return;
+ const current = window.scrollY;
+ if (current < 200) { prog.classList.add('hidden'); }
+ else { prog.classList.remove('hidden'); }
+ lastScroll = current;
+}, { passive: true });
+
+// PROCEDURAL PANELS 
+function showPanel(id, btn) {
+ document.querySelectorAll('.proc-panel').forEach(p => p.classList.remove('active'));
+ document.querySelectorAll('.proc-tab').forEach(t => t.classList.remove('active'));
+ document.getElementById('panel-' + id).classList.add('active');
+ btn.classList.add('active');
+ btn.classList.add('visited');
+}
+
+// PLATE BUILDER 
+const foods = { veg: 0, protein: 0, grains: 0, water: 0 };
+const maxPerFood = 5;
+const colors = { veg: '#4CAF50', protein: '#FF7043', grains: '#FDD835', water: '#42A5F5' };
+const idealRatio = { veg: 0.5, protein: 0.25, grains: 0.25, water: 0 };
+
+function adjustFood(type, delta) {
+ foods[type] = Math.max(0, Math.min(maxPerFood, foods[type] + delta));
+ document.getElementById('count-' + type).textContent = foods[type];
+ const card = document.getElementById('card-' + type);
+ card.classList.toggle('active', foods[type] > 0);
+ renderPlate();
+}
+
+function renderPlate() {
+ const canvas = document.getElementById('plateCanvas');
+ const ctx = canvas.getContext('2d');
+ const total = foods.veg + foods.protein + foods.grains + foods.water;
+ ctx.clearRect(0, 0, 300, 300);
+
+ if (total === 0) {
+ ctx.beginPath(); ctx.arc(150, 150, 148, 0, Math.PI * 2);
+ ctx.fillStyle = '#f0ebe4'; ctx.fill();
+ document.getElementById('plateScore').textContent = '0';
+ document.getElementById('plateFeedback').innerHTML = ' Start adding foods to see how your plate compares to the Food Guide recommendation.';
+ return;
+ }
+
+ const order = ['veg', 'protein', 'grains', 'water'];
+ let startAngle = -Math.PI / 2;
+
+ order.forEach(key => {
+ if (foods[key] === 0) return;
+ const slice = (foods[key] / total) * Math.PI * 2;
+ ctx.beginPath();
+ ctx.moveTo(150, 150);
+ ctx.arc(150, 150, 148, startAngle, startAngle + slice);
+ ctx.closePath();
+ ctx.fillStyle = colors[key];
+ ctx.fill();
+ ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.stroke();
+ startAngle += slice;
+ });
+
+ // Score
+ const vegRatio = total > 0 ? foods.veg / total : 0;
+ const protRatio = total > 0 ? foods.protein / total : 0;
+ const grainsRatio = total > 0 ? foods.grains / total : 0;
+ const score = Math.round(
+ Math.max(0, 100 - (
+ Math.abs(vegRatio - 0.5) * 100 +
+ Math.abs(protRatio - 0.25) * 80 +
+ Math.abs(grainsRatio - 0.25) * 80
+ ))
+ );
+
+ document.getElementById('plateScore').textContent = score;
+ const scoreEl = document.getElementById('plateScore');
+ scoreEl.className = 'score-num';
+ if (score < 40) scoreEl.classList.add('score-poor');
+ else if (score < 70) scoreEl.classList.add('score-mid');
+ else scoreEl.classList.add('score-good');
+
+ // Feedback
+ let fb = '';
+ if (score >= 80) { fb = ' <strong>Excellent plate!</strong> Your meal closely follows the Food Guide model. Great balance of vegetables, protein, and whole grains.'; }
+ else if (score >= 55) { fb = ' <strong>Good start!</strong> '; }
+ else { fb = ' <strong>Room to improve.</strong> '; }
+
+ if (vegRatio < 0.4 && score < 80) fb += `Try adding more <strong>vegetables & fruits</strong> - they should make up half your plate. `;
+ if (protRatio < 0.2 && score < 80) fb += `Consider adding a <strong>protein food</strong> like legumes, fish, or eggs. `;
+ if (grainsRatio < 0.15 && score < 80) fb += `Don't forget <strong>whole grains</strong> for lasting energy. `;
+ if (vegRatio > 0.65 && score < 80) fb += `Great veggie intake! Balance it with some protein and grains. `;
+
+ document.getElementById('plateFeedback').innerHTML = fb;
+}
+
+// QUIZ 
+const questions = [
+ {
+ q: "According to Canada's Food Guide, what should make up half of your plate at meals?",
+ options: ["Protein foods like meat and eggs", "Whole grain foods like rice and bread", "Vegetables and fruits", "Dairy products like milk and cheese"],
+ correct: 2,
+ explanation: "Correct! Canada's Food Guide recommends filling half your plate with vegetables and fruits at each meal. They're packed with fibre, vitamins, and minerals - and most Canadians don't eat nearly enough of them."
+ },
+ {
+ q: "Which of these is considered a \"protein food\" according to Canada's Food Guide?",
+ options: ["White bread", "Lentils and chickpeas", "Orange juice", "Butter"],
+ correct: 1,
+ explanation: "Lentils and chickpeas are excellent plant-based protein foods! The Food Guide encourages eating more protein from plant sources (legumes, tofu, nuts, seeds) alongside fish, shellfish, eggs, and lean meat."
+ },
+ {
+ q: "What is the main recommended drink according to Canada's Food Guide?",
+ options: ["Low-fat milk", "Orange juice", "Water", "Green tea"],
+ correct: 2,
+ explanation: "Water is the drink of choice recommended by Canada's Food Guide. It hydrates without added sugars or calories. Sugary drinks - including 100% fruit juice - are not recommended as a regular drink."
+ },
+ {
+ q: "Canada's Food Guide advises you to limit which type of food?",
+ options: ["Fresh vegetables", "Legumes and beans", "Highly processed foods", "Whole grain breads"],
+ correct: 2,
+ explanation: "Highly processed foods - like chips, packaged baked goods, hot dogs, and fast food - are high in sodium, saturated fat, and added sugar. The Food Guide recommends making them occasional choices rather than daily staples."
+ },
+ {
+ q: "On a Canadian Nutrition Facts label, a % Daily Value of 5% or less means the food has...",
+ options: ["A lot of that nutrient", "A little of that nutrient", "Exactly the right amount", "An unacceptable level"],
+ correct: 1,
+ explanation: "The \"5 and 15\" rule: 5% DV or less = a little of that nutrient; 15% DV or more = a lot. This helps you quickly identify foods high in sodium or saturated fat (limit those) and high in fibre or vitamins (encourage those)."
+ }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function startQuiz() {
+ currentQ = 0; score = 0; answered = false;
+ document.getElementById('quizMain').style.display = 'block';
+ document.getElementById('quizResult').classList.remove('show');
+ loadQuestion();
+}
+
+function loadQuestion() {
+ answered = false;
+ const q = questions[currentQ];
+ document.getElementById('quizNum').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+ document.getElementById('quizProgress').style.width = `${(currentQ / questions.length) * 100}%`;
+ document.getElementById('quizQuestion').textContent = q.q;
+
+ const optContainer = document.getElementById('quizOptions');
+ optContainer.innerHTML = '';
+ q.options.forEach((opt, i) => {
+ const btn = document.createElement('button');
+ btn.className = 'quiz-option';
+ btn.textContent = opt;
+ btn.onclick = () => selectAnswer(i, btn);
+ optContainer.appendChild(btn);
+ });
+
+ document.getElementById('quizFeedback').className = 'quiz-feedback';
+ document.getElementById('quizFeedback').textContent = '';
+ document.getElementById('quizNext').classList.remove('show');
+ document.getElementById('quizNext').textContent = currentQ < questions.length - 1 ? 'Next Question →' : 'See Results →';
+}
+
+function selectAnswer(idx, btn) {
+ if (answered) return;
+ answered = true;
+ const q = questions[currentQ];
+ const opts = document.querySelectorAll('.quiz-option');
+
+ opts.forEach((o, i) => {
+ if (i === q.correct) o.classList.add('correct');
+ else if (i === idx && idx !== q.correct) o.classList.add('wrong');
+ });
+
+ const fb = document.getElementById('quizFeedback');
+ if (idx === q.correct) {
+ score++;
+ fb.className = 'quiz-feedback correct-fb show';
+ fb.textContent = ' ' + q.explanation;
+ } else {
+ fb.className = 'quiz-feedback wrong-fb show';
+ fb.textContent = ' ' + q.explanation;
+ }
+ document.getElementById('quizNext').classList.add('show');
+}
+
+function nextQuestion() {
+ currentQ++;
+ if (currentQ >= questions.length) {
+ showResult();
+ } else {
+ loadQuestion();
+ }
+}
+
+function showResult() {
+ document.getElementById('quizProgress').style.width = '100%';
+ document.getElementById('quizMain').style.display = 'none';
+ const result = document.getElementById('quizResult');
+ result.classList.add('show');
+ document.getElementById('resultScore').textContent = `${score}/${questions.length}`;
+ const msgs = [
+ "Keep learning! The guides below will help you build your knowledge.",
+ "Not bad! Explore a few more sections to fill in the gaps.",
+ "Good work! You know your Food Guide basics.",
+ "Great job! You've got a solid understanding of healthy eating.",
+ "Perfect score! You're a Canada's Food Guide expert! "
+ ];
+ document.getElementById('resultMsg').textContent = msgs[score] || msgs[0];
+
+ // Generate personalised recommendations
+ const recsEl = document.getElementById('resultRecs');
+ recsEl.innerHTML = '';
+ const recs = [];
+
+ // Q0 wrong = plate builder; Q1 wrong = procedural; Q2 wrong = timing;
+ // Q3 wrong = tips; Q4 wrong = decoder
+ const wrongMap = [
+ { section: 'builder', icon: '', title: 'Try the Plate Builder', sub: 'Practice filling half your plate with vegetables' },
+ { section: 'procedural', icon: '', title: 'Read the How-To Guide', sub: 'Learn which protein foods to choose and how much' },
+ { section: 'timing', icon: '⏰', title: 'Explore the Meal Timing guide', sub: 'See what a balanced day of eating looks like' },
+ { section: 'tips', icon: '', title: 'Review the Healthy Eating Tips', sub: 'Learn how to limit processed foods effectively' },
+ { section: 'decoder', icon: '', title: 'Use the Label Decoder', sub: 'Practice reading the % Daily Value on a real label' },
+ ];
+
+ // Track which questions were wrong (we reset answered so track separately)
+ if (score < questions.length) {
+ recs.push(wrongMap[0]); // always suggest plate builder if not perfect
+ }
+ if (score <= 3) recs.push(wrongMap[4]); // label decoder
+ if (score <= 2) recs.push(wrongMap[1]); // how-to guide
+
+ const uniqueRecs = recs.filter((r, i, a) => a.findIndex(x => x.section === r.section) === i).slice(0, 3);
+
+ if (uniqueRecs.length > 0) {
+ const label = document.createElement('div');
+ label.style.cssText = 'font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;';
+ label.textContent = 'Suggested next steps';
+ recsEl.appendChild(label);
+
+ uniqueRecs.forEach(rec => {
+ const a = document.createElement('a');
+ a.href = '#' + rec.section;
+ a.className = 'result-rec';
+ a.onclick = () => markVisited(rec.section);
+ a.innerHTML = `
+ <span class="result-rec-icon">${rec.icon}</span>
+ <div class="result-rec-text">
+ <div class="result-rec-title">${rec.title}</div>
+ <div class="result-rec-sub">${rec.sub}</div>
+ </div>
+ <span class="result-rec-arrow">→</span>
+ `;
+ recsEl.appendChild(a);
+ });
+ }
+}
+
+// TIPS 
+function toggleTip(el) {
+ const detail = el.nextElementSibling;
+ const isOpen = detail.classList.contains('open');
+ detail.classList.toggle('open', !isOpen);
+ el.textContent = isOpen ? 'Learn more ↓' : 'Show less ↑';
+}
+
+// LABEL DECODER 
+function highlightLabel(row, key) {
+ document.querySelectorAll('.label-row').forEach(r => r.classList.remove('highlighted'));
+ row.classList.add('highlighted');
+ document.querySelectorAll('.explainer-card').forEach(c => {
+ c.classList.remove('active');
+ c.querySelector('.explainer-body').classList.remove('open');
+ });
+ const target = document.getElementById('exp-' + key);
+ if (target) {
+ target.classList.add('active');
+ target.querySelector('.explainer-body').classList.add('open');
+ target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+ }
+}
+
+// MEAL TIMING 
+function showMeal(id, el) {
+ document.querySelectorAll('.meal-detail').forEach(d => d.classList.remove('active'));
+ document.querySelectorAll('.timeline-stop').forEach(s => s.classList.remove('active'));
+ document.getElementById('meal-' + id).classList.add('active');
+ el.classList.add('active');
+}
+
+// INIT 
+startQuiz();
+renderPlate();
+
+// Pulse first label row to show it's clickable
+setTimeout(() => {
+ const firstRow = document.querySelector('.label-row');
+ if (firstRow) firstRow.classList.add('pulse-hint');
+ setTimeout(() => { if (firstRow) firstRow.classList.remove('pulse-hint'); }, 4000);
+}, 2000);
+
+// Hide progress bar initially (shown after scroll)
+document.getElementById('siteProgress').classList.add('hidden');
+</script>
+</body>
+</html>
